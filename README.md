@@ -16,7 +16,7 @@ These example flows and Node-RED Dashboard might be useful as part of an Earthqu
 
 ![OpenEEW Alert Dashboard](images/openeew-quakemap-v1-dashboard.png?raw=true "OpenEEW Dashboard")
 <p align="center">
-  <strong>Get the Code: <a href="flows/openeew-quakemap-v1.flow">Node-RED flow for OpenEEW Alerts</strong></a>
+  <strong>Get the Code: <a href="flows/openeew-quakemap-v1.json">Node-RED flow for OpenEEW Alerts</strong></a>
 </p>
 
 ![OpenEEW Alert flow](images/openeew-quakemap-v1-flow.png?raw=true "OpenEEW flow")
