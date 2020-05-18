@@ -9,6 +9,7 @@ These example flows and Node-RED Dashboard might be useful as part of an Earthqu
 - [Add the following nodes](https://nodered.org/docs/user-guide/runtime/adding-nodes) to your Node-RED palette
   - [node-red-dashboard](https://flows.nodered.org/node/node-red-dashboard)
   - [node-red-contrib-web-worldmap](https://flows.nodered.org/node/node-red-contrib-web-worldmap)
+  - [node-red-node-twilio](https://flows.nodered.org/node/node-red-node-twilio)
 
 ## Node-RED flow in this repository:
 ---
