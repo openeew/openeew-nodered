@@ -10,8 +10,9 @@ These example flows and Node-RED Dashboard might be useful as part of an Earthqu
   - [node-red-dashboard](https://flows.nodered.org/node/node-red-dashboard)
   - [node-red-contrib-web-worldmap](https://flows.nodered.org/node/node-red-contrib-web-worldmap)
   - [node-red-node-twilio](https://flows.nodered.org/node/node-red-node-twilio)
+  - [node-red-node-ui-table](https://flows.nodered.org/node/node-red-node-ui-table)
 
-## Node-RED flow in this repository:
+## Node-RED flow examples in this repository:
 ---
 ### A flow that displays Earthquake Early Warning Sensor Alerts on a map
 
@@ -20,7 +21,16 @@ These example flows and Node-RED Dashboard might be useful as part of an Earthqu
   <strong>Get the Code: <a href="flows/openeew-quakemap-v1.json">Node-RED flow for OpenEEW Alerts</strong></a>
 </p>
 
-![OpenEEW Alert flow](images/openeew-quakemap-v1-flow.png?raw=true "OpenEEW flow")
+![OpenEEW Sensor Plot flow](images/openeew-quakemap-v1-flow.png?raw=true "OpenEEW flow")
+---
+### A flow that plots Seismic Activity Sensor graphs in a chart
+
+![OpenEEW Sensor Dashboard](images/openeew-sensorplot-dashboard.png?raw=true "OpenEEW Dashboard")
+<p align="center">
+  <strong>Get the Code: <a href="flows/openeew-sensorplot.json">Node-RED flow for OpenEEW Sensor graphs</strong></a>
+</p>
+
+![OpenEEW Sensor flow](images/openeew-sensorplot-flow.png?raw=true "OpenEEW flow")
 ---
 
 ### Authors
