@@ -36,7 +36,7 @@ These example flows and Node-RED Dashboard might be useful as part of an Earthqu
 ### Authors
 
 - [John Walicki](https://github.com/johnwalicki)
-- [Andres Meira](https://github.com/andygrillo)
+- [Grillo](https://grillo.io)
 ___
 
 Enjoy!  Give us [feedback](https://github.com/grillo/openeew-nodered/issues) if you have suggestions on how to improve this tutorial.
