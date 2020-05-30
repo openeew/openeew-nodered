@@ -11,6 +11,7 @@ These example flows and Node-RED Dashboard might be useful as part of an Earthqu
   - [node-red-contrib-web-worldmap](https://flows.nodered.org/node/node-red-contrib-web-worldmap)
   - [node-red-node-twilio](https://flows.nodered.org/node/node-red-node-twilio)
   - [node-red-node-ui-table](https://flows.nodered.org/node/node-red-node-ui-table)
+  - [node-red-node-aws](https://flows.nodered.org/node/node-red-node-aws)
 
 ### Seismic Activity algorithm
 
@@ -73,6 +74,22 @@ if( alert ) {
 </p>
 
 ![OpenEEW Sensor flow](images/openeew-sensorplot-flow.png?raw=true "OpenEEW flow")
+---
+### A flow that plots historical seismic activity playback from the OpenEEW dataset
+
+This flow reads a file from a bucket of historical sensor data from the
+[OpenEEW dataset](https://s3.amazonaws.com/grillo-openeew/index.html#records/)
+and plays it back into a graph in a Node-RED Dashboard.  The screenshot is of a
+[magnitude 7.2 earthquake in Mexico](https://blog.grillo.io/analyzing-a-magnitude-7-2-earthquake-in-mexico-using-python-6272a4ff63e3) on
+[2018-02-16 23:43:00](https://s3.amazonaws.com/grillo-openeew/index.html#records/country_code=mx/device_id=006/year=2018/month=02/day=16/hour=23/40.jsonl).
+For this flow to work correctly, you will need credentials to the AWS bucket.
+
+![OpenEEW Historical Playback Dashboard](images/openeew-quakeplayback-dashboard.png?raw=true "OpenEEW Dashboard")
+<p align="center">
+  <strong>Get the Code: <a href="flows/">Node-RED flow for OpenEEW Historical Playback (TBD)</strong></a>
+</p>
+
+![OpenEEW Historical Playback Flow](images/openeew-quakeplayback-flow.png?raw=true "OpenEEW flow")
 ---
 
 ### Authors
