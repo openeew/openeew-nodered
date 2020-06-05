@@ -15,7 +15,7 @@ These example flows and Node-RED Dashboard might be useful as part of an Earthqu
 
 ### Seismic Activity algorithm
 
-One simplistic approach to detecting seismic activity is to measure vibration / acceleration from the openeew accelerometer sensors.  Natural systems will have some jitter so the algorithm needs to filter false positives and set thresholds.  Wikipedia defines a [gal (unit)](https://en.wikipedia.org/wiki/Gal_(unit)) as a unit of acceleration used extensively in the science of gravimetry. The gal is defined as 1 centimeter per second squared (1 cm/s2). Seismic activity of interest might exceed 3 gals (3 cm/sec2).
+One simplistic approach to detecting seismic activity is to measure large accelerations from the openeew accelerometer sensors, based on a set threshold that is above the typical noise floor of the accelerometer. Wikipedia defines a [gal (unit)](https://en.wikipedia.org/wiki/Gal_(unit)) as a unit of acceleration used extensively in the science of gravimetry. The gal is defined as 1 centimeter per second squared (1 cm/s2). Seismic activity of interest might exceed 3 gals (3 cm/sec2).
 
 These Node-RED flows observe the real-time openeew accelerometer data and calculate if the sensor might be experiencing seismic activity using the following algorithm. Each second this function receives x/y/z arrays of subsecond vibration data.  The data arrays are passed into the function inside ```msg.payload.traces[0]```  The javascript function loops through the vibration data looking for acceleration exceeding 3 cm/sec2
 
@@ -31,7 +31,6 @@ These Node-RED flows observe the real-time openeew accelerometer data and calcul
 // Most of this is noise
 // 1 cm/sec2 == 1 gal
 // +/- 0.3 gals is jitter
-// Small earthquake register around 3 gals
 
 var alert = false;
 var gals = 0.0;
