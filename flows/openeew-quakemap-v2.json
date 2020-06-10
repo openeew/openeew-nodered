@@ -1,0 +1,467 @@
+[
+    {
+        "id": "6c54c8b3.52317",
+        "type": "tab",
+        "label": "Grillo OpenEEW Map",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "e1754c18.b31998",
+        "type": "mqtt in",
+        "z": "6c54c8b3.52317",
+        "name": "",
+        "topic": "grillo-openeew/traces/+",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "5b56adc2.c1d534",
+        "x": 140,
+        "y": 420,
+        "wires": [
+            [
+                "ff8d84b5.ece278",
+                "e27d8ae6.76f6e8",
+                "57585cb5.acce4c"
+            ]
+        ]
+    },
+    {
+        "id": "ff8d84b5.ece278",
+        "type": "debug",
+        "z": "6c54c8b3.52317",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 410,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e27d8ae6.76f6e8",
+        "type": "function",
+        "z": "6c54c8b3.52317",
+        "name": "Alert on possible earthquake",
+        "func": "// The simplest way to detect changes :\n// \"not earthquake\" vs \"possible earthquake\"\n// For each tuple x,y,z take the\n// square root of sum of the squared of each components:\n// (x**2 + y**2 + z**2)**(1/2)\n// square rooting gives back positive values\n\n// Loop through all of the subsecond arrays of data\n// Most of this is noise\n// cm/sec2 == 1 gal\n// +/- 0.3 gals is jitter\n// Small earthquake register around 3 gals\n\nvar alert = false;\nvar gals = 0.0;\nvar x,y,z;\nfor( i=0; i<msg.payload.traces[0].x.length;i++){\n    x = msg.payload.traces[0].x[i];\n    y = msg.payload.traces[0].y[i];\n    z = msg.payload.traces[0].z[i];\n    \n    gals = Math.sqrt( Math.pow(x,2) + Math.pow(y,2) + Math.pow(z,2) );\n    if( gals > 3 ) {\n        // whoa - maybe an earthquake\n        alert = true\n    }\n}\n\nif( alert ) {\n    return msg;\n} else {\n    return null ;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 460,
+        "y": 420,
+        "wires": [
+            [
+                "2ad66206.e315ae",
+                "da55f212.519728",
+                "52d330e7.8bb62"
+            ]
+        ]
+    },
+    {
+        "id": "2ad66206.e315ae",
+        "type": "debug",
+        "z": "6c54c8b3.52317",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 750,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "da55f212.519728",
+        "type": "template",
+        "z": "6c54c8b3.52317",
+        "name": "Format an Alert",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Possible earthquake detected by device {{payload.device_id}} at {{payload.traces[0].t}} !",
+        "output": "str",
+        "x": 460,
+        "y": 520,
+        "wires": [
+            [
+                "4e1ace46.0776c"
+            ]
+        ]
+    },
+    {
+        "id": "f141bc75.24a0b8",
+        "type": "inject",
+        "z": "6c54c8b3.52317",
+        "name": "Fake Earthquake",
+        "topic": "",
+        "payload": "{\"device_id\":\"mx015\",\"cloud_t\":1589570965.163,\"traces\":[{\"t\":1589570964.807,\"sr\":31.25,\"x\":[7.02,-0.01,0,-0.02,-0.04,-0.05,0,-0.02,0.07,0.04,-0.05,0.06,0.09,-0.02,0,-0.11,0.02,-0.05,0.05,-0.07,0.07,0.09,0,-0.07,-0.01,0.01,-0.13,-0.07,0.06,-0.03,0.03,0.05],\"y\":[4.01,0.04,0.04,0,-0.01,-0.04,-0.02,0.07,0.08,0.04,0.05,-0.04,-0.11,0.02,-0.03,0.04,0.02,0.05,-0.05,0.04,0.09,0.01,-0.04,-0.04,0.02,-0.04,-0.03,-0.02,-0.05,-0.02,-0.04,-0.04],\"z\":[9.08,-0.1,-0.03,-0.06,0.06,-0.05,0,-0.07,0.07,-0.01,0,0.03,0.03,0.01,0.03,-0.04,-0.07,-0.07,-0.07,0.04,0.02,0.13,0.13,0.03,-0.07,0.14,-0.01,0.09,0.11,-0.07,-0.03,-0.04]}]}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 480,
+        "wires": [
+            [
+                "e27d8ae6.76f6e8"
+            ]
+        ]
+    },
+    {
+        "id": "4e1ace46.0776c",
+        "type": "twilio out",
+        "z": "6c54c8b3.52317",
+        "twilio": "",
+        "twilioType": "sms",
+        "url": "",
+        "number": "",
+        "name": "Alert Earthquake",
+        "x": 710,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "638cb7e2.b128c",
+        "type": "csv",
+        "z": "6c54c8b3.52317",
+        "name": "Parse locations",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "x": 560,
+        "y": 140,
+        "wires": [
+            [
+                "c0aba114.5b0ac"
+            ]
+        ]
+    },
+    {
+        "id": "38e9ef16.ab538",
+        "type": "template",
+        "z": "6c54c8b3.52317",
+        "name": "Sensor Locations",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "device_id,lat,lon,location_display_name\nmx000,18.46,-97.4,Tehuacan\nmx001,15.67025,-96.4951,Costa central de Oaxaca\nmx002,15.8634,-97.0692,Puerto Escondido\nmx004,16.35073,-98.05096,Pinotepa Nacional\nmx005,16.43514,-95.02098,Juchitán\nmx006,16.68485,-98.40432,Límite Guerrero Oaxaca\nmx007,16.32395,-95.24342,Tehuantepec\nmx008,16.60877,-98.97822,Costa Chica Guerrero\nmx009,16.71743,-99.12173,Costa Chica Guerrero\nmx010,16.79264,-99.38999,Costa Chica Guerrero\nmx011,16.83632,-99.90182,Acapulco\nmx012,16.35993,-94.18839,Límite Oaxaca Chiapas\nmx013,16.35993,-94.18839,Límite Oaxaca Chiapas\nmx014,16.87247,-99.88662,Acapulco\nmx015,17.00836,-100.0895,Costa Grande Guerrero\nmx016,16.00631,-97.44738,Costa central de Oaxaca\nmx017,17.23433,-100.6307,Costa Grande Guerrero\nmx018,17.25936,-100.87556,Costa Grande Guerrero\nmx019,17.2725,-101.04604,Costa Grande Guerrero\nmx020,17.53705,-101.27655,Costa Grande Guerrero\nmx021,17.64069,-101.47923,Zihuatanaejo\nmx022,17.63601,-101.57063,Zihuatanaejo\nmx023,17.6516,-101.55154,Zihuatanaejo\nmx024,17.98208,-101.80662,Costa Grande Guerrero límite con Michoacán\nmx026,18.716,-98.778,Jantetelco\nmx027,19.048038,-98.271408,Cholula\nmx029,18.957042,-99.235981,Cuernavaca\nmx999,16.00631,-97.44738,Costa central de Oaxaca",
+        "output": "str",
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [
+                "638cb7e2.b128c"
+            ]
+        ]
+    },
+    {
+        "id": "c44dc9d7.180d9",
+        "type": "debug",
+        "z": "6c54c8b3.52317",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 950,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e377c310.04baa",
+        "type": "comment",
+        "z": "6c54c8b3.52317",
+        "name": "One time - Add Sensor pins to Map",
+        "info": "",
+        "x": 180,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "c0aba114.5b0ac",
+        "type": "function",
+        "z": "6c54c8b3.52317",
+        "name": "Drop Pins",
+        "func": "msg.payload.icon = \"line-chart\";\nmsg.payload.iconColor = \"green\";\nmsg.payload.name = msg.payload.device_id;\nmsg.payload.command = { zoom:7, \n                            \"lat\":msg.payload.latitude,\n                            \"lon\":msg.payload.longitude,\n                            autopan:true };\n\ndelete msg.payload.latitude;\ndelete msg.payload.longitude;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 760,
+        "y": 140,
+        "wires": [
+            [
+                "c44dc9d7.180d9",
+                "db37d28.a21f9b"
+            ]
+        ]
+    },
+    {
+        "id": "ed4dcaa1.ca3488",
+        "type": "ui_ui_control",
+        "z": "6c54c8b3.52317",
+        "name": "",
+        "events": "all",
+        "x": 120,
+        "y": 80,
+        "wires": [
+            [
+                "bc483f3a.8dc1f8"
+            ]
+        ]
+    },
+    {
+        "id": "bc483f3a.8dc1f8",
+        "type": "delay",
+        "z": "6c54c8b3.52317",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "38e9ef16.ab538"
+            ]
+        ]
+    },
+    {
+        "id": "52d330e7.8bb62",
+        "type": "function",
+        "z": "6c54c8b3.52317",
+        "name": "Alert on Map",
+        "func": "msg.payload.icon = \"line-chart\";\nmsg.payload.iconColor = \"red\";\nmsg.payload.name = msg.payload.device_id;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 750,
+        "y": 420,
+        "wires": [
+            [
+                "db37d28.a21f9b"
+            ]
+        ]
+    },
+    {
+        "id": "57585cb5.acce4c",
+        "type": "function",
+        "z": "6c54c8b3.52317",
+        "name": "Save Last Seen",
+        "func": "var Sensors = flow.get(\"Sensors\") || {};\nvar device_id = msg.payload.device_id;\n\n// Add this key/value pair to the object list\n// or update its lastseen timestamp\nSensors[device_id] = msg.payload.cloud_t ;\nflow.set(\"Sensors\", Sensors);\n\nreturn null;\n//msg.payload = Sensors;\n//return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bdd68c9d.eb678",
+        "type": "inject",
+        "z": "6c54c8b3.52317",
+        "name": "Check Sensor Status",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 240,
+        "wires": [
+            [
+                "cc017bbf.af85b"
+            ]
+        ]
+    },
+    {
+        "id": "1124ec42.e953d4",
+        "type": "debug",
+        "z": "6c54c8b3.52317",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 610,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "cc017bbf.af85b",
+        "type": "function",
+        "z": "6c54c8b3.52317",
+        "name": "Sensor Status Check",
+        "func": "var Sensors = flow.get(\"Sensors\") || {};\nvar Offline = flow.get(\"Offline\") || [];\nvar newmsg = {};\nvar now = Date.now();\n\n// check if a sensor hasn't checked in > 30 seconds\n// Loop through all of the key/pair pairs\nfor (let [device, ts] of Object.entries(Sensors)) {\n    if( (now - ts*1000) > 30000 ) {\n        // store this offline sensor, if its not already on the list\n        if( !Offline.includes(device) ) {\n            Offline.push(device);\n            flow.set(\"Offline\",Offline);\n        \n            // Change the color of the marker on the map\n            newmsg.payload = {\"device_id\":device, \"lastseen\":ts, \"offline\":(now-ts*1000)};\n            node.send(newmsg);\n        }\n    } else if( Offline.includes(device) ) {\n        // Sensor is back online\n        // Reset the color on the map\n        newmsg.payload = {\"device_id\":device, \"lastseen\":ts, \"offline\":0};\n        node.send(newmsg);\n        // Remove from list\n        Offline.splice( Offline.indexOf(device), 1);\n        flow.set(\"Offline\",Offline);\n    }\n}\n\n// Sample data\n//{\"mx024\":1589777669.541,\"mx006\":1589777669.664,\"mx027\":1589777669.164,\n// \"mx016\":1589776075.947,\"mx000\":1589775524.619}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "7b13a89c.0d595",
+                "1124ec42.e953d4"
+            ]
+        ]
+    },
+    {
+        "id": "817583d3.4adda8",
+        "type": "function",
+        "z": "6c54c8b3.52317",
+        "name": "fake mx000",
+        "func": "var Sensors = flow.get(\"Sensors\") || {};\n\nvar now = Date.now() / 1000 ;\nSensors[\"mx000\"] = now ;\n\nflow.set(\"Sensors\",Sensors)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ea5d1cb.51423",
+        "type": "inject",
+        "z": "6c54c8b3.52317",
+        "name": "Sensor down",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 280,
+        "wires": [
+            [
+                "817583d3.4adda8"
+            ]
+        ]
+    },
+    {
+        "id": "7b13a89c.0d595",
+        "type": "function",
+        "z": "6c54c8b3.52317",
+        "name": "Mark device offline / online on Map",
+        "func": "if( msg.payload.offline !== 0 ) {\n    msg.payload.icon = \"exclamation-triangle\";\n    msg.payload.iconColor = \"black\";\n} else {\n    // device came back online\n    msg.payload.icon = \"line-chart\";\n    msg.payload.iconColor = \"green\";\n}\nmsg.payload.name = msg.payload.device_id;\nvar ts = new Date(msg.payload.lastseen*1000);\nmsg.payload.lastseen = ts.toUTCString();\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 240,
+        "wires": [
+            [
+                "db37d28.a21f9b"
+            ]
+        ]
+    },
+    {
+        "id": "a5712209.961678",
+        "type": "comment",
+        "z": "6c54c8b3.52317",
+        "name": "Monitor Sensor Status",
+        "info": "",
+        "x": 140,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e063eac0.5b4fc",
+        "type": "comment",
+        "z": "6c54c8b3.52317",
+        "name": "Subscribe to Sensor data",
+        "info": "",
+        "x": 150,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "db37d28.a21f9b",
+        "type": "ui_worldmap",
+        "z": "6c54c8b3.52317",
+        "group": "4399af6c.47411",
+        "order": 3,
+        "width": "22",
+        "height": "14",
+        "name": "",
+        "lat": "18.46",
+        "lon": "-97.4",
+        "zoom": "7",
+        "layer": "Terrain",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "hide",
+        "layers": "show",
+        "panit": "false",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "true",
+        "coords": "none",
+        "showgrid": "false",
+        "path": "/openeew",
+        "x": 940,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "5b56adc2.c1d534",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "OpenEEW",
+        "broker": "",
+        "port": "8883",
+        "tls": "",
+        "clientid": "",
+        "usetls": true,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "4399af6c.47411",
+        "type": "ui_group",
+        "z": "",
+        "name": "Open Earthquake Early Warning system",
+        "tab": "d81f5fdb.fcf988",
+        "order": 1,
+        "disp": true,
+        "width": "22",
+        "collapse": false
+    },
+    {
+        "id": "d81f5fdb.fcf988",
+        "type": "ui_tab",
+        "z": "",
+        "name": "OpenEEW",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

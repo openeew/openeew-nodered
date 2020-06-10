@@ -3,6 +3,9 @@ Build a Earthquake Early Warning Alert Map Node-RED Dashboard using OpenEEW data
 
 These example flows and Node-RED Dashboard might be useful as part of an Earthquake Early Warning system.
 
+Another Node-RED Earthquake map example which plots USGS earthquake data can be found
+[here](https://github.com/johnwalicki/Node-RED-Earthquake-Dashboard)
+
 ### Prerequistes
 
 - [Install Node-RED](https://nodered.org/docs/getting-started/) on your system or in the cloud
@@ -60,10 +63,10 @@ if( alert ) {
 
 ![OpenEEW Alert Dashboard](images/openeew-quakemap-v1-dashboard.png?raw=true "OpenEEW Dashboard")
 <p align="center">
-  <strong>Get the Code: <a href="flows/openeew-quakemap-v1.json">Node-RED flow for OpenEEW Alerts</strong></a>
+  <strong>Get the Code: <a href="flows/openeew-quakemap-v2.json">Node-RED flow for OpenEEW Alerts</strong></a>
 </p>
 
-![OpenEEW Sensor Plot flow](images/openeew-quakemap-v1-flow.png?raw=true "OpenEEW flow")
+![OpenEEW Sensor Plot flow](images/openeew-quakemap-v2-flow.png?raw=true "OpenEEW flow")
 ---
 ### A flow that plots Seismic Activity Sensor graphs in a chart
 
