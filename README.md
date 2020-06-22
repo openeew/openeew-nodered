@@ -68,7 +68,7 @@ if( alert ) {
 
 ![OpenEEW Sensor Plot flow](images/openeew-quakemap-v2-flow.png?raw=true "OpenEEW flow")
 ---
-### A flow that plots Seismic Activity Sensor graphs in a chart
+### A flow that plots (near) real time Seismic activity sensor graphs in a chart
 
 ![OpenEEW Sensor Dashboard](images/openeew-sensorplot-dashboard.png?raw=true "OpenEEW Dashboard")
 <p align="center">
@@ -76,6 +76,29 @@ if( alert ) {
 </p>
 
 ![OpenEEW Sensor flow](images/openeew-sensorplot-flow.png?raw=true "OpenEEW flow")
+
+---
+### Select a Sensor and time range, plot the historical seismic activity from that OpenEEW dataset
+
+This flow displays a Node-RED dashboard which presents the investigator / seismologist with a calendar,
+time interval options and a list of OpenEEW sensors. The investigator selects an interesting sensor
+and time period to study and queries the OpenEEW dataset. The flow then plots the historical sensor
+data in a set of graphs.
+
+The flow constructs a cloud object storage filename for the selected sensor and time interval and retrieves the historical sensor data from the
+[OpenEEW dataset](https://s3.amazonaws.com/grillo-openeew/index.html#records/)
+and plays it back into a graph in a Node-RED Dashboard.  The screenshot is of a
+magnitude 4.1 earthquake in Puerto Rico on
+[2020-06-01 12:05:51](https://s3.amazonaws.com/grillo-openeew/index.html#records/country_code=pr/device_id=3ef3d787af85/year=2020/month=06/day=01/hour=12/05.jsonl).
+For this flow to work correctly, you will need credentials to the AWS bucket.
+
+![OpenEEW Historical Playback Dashboard](images/openeew-quakeplaybackv3-dashboard.png?raw=true "OpenEEW Dashboard")
+<p align="center">
+  <strong>Get the Code: <a href="flows/openeew-quakemap-v3.json">Node-RED flow for OpenEEW Historical Playback</strong></a>
+</p>
+
+![OpenEEW Historical Playback Flow](images/openeew-quakeplaybackv3-flow.png?raw=true "OpenEEW flow")
+
 ---
 ### A flow that plots historical seismic activity playback from the OpenEEW dataset
 
@@ -87,9 +110,6 @@ and plays it back into a graph in a Node-RED Dashboard.  The screenshot is of a
 For this flow to work correctly, you will need credentials to the AWS bucket.
 
 ![OpenEEW Historical Playback Dashboard](images/openeew-quakeplayback-dashboard.png?raw=true "OpenEEW Dashboard")
-<p align="center">
-  <strong>Get the Code: <a href="flows/">Node-RED flow for OpenEEW Historical Playback (TBD)</strong></a>
-</p>
 
 ![OpenEEW Historical Playback Flow](images/openeew-quakeplayback-flow.png?raw=true "OpenEEW flow")
 ---
