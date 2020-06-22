@@ -1,0 +1,1460 @@
+[
+    {
+        "id": "7c24ffae.00d628",
+        "type": "tab",
+        "label": "Quake Playback v3",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "70ac4fd5.e3ce58",
+        "type": "ui_date_picker",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "label": "Select a date to review",
+        "group": "bbbb76e6.b599a8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "",
+        "x": 140,
+        "y": 60,
+        "wires": [
+            [
+                "edfe50c.e9eed3"
+            ]
+        ]
+    },
+    {
+        "id": "c0aec953.5364e8",
+        "type": "amazon s3",
+        "z": "7c24ffae.00d628",
+        "aws": "",
+        "bucket": "grillo-openeew",
+        "filename": "",
+        "region": "us-east-1",
+        "name": "",
+        "x": 630,
+        "y": 740,
+        "wires": [
+            [
+                "fccadfe1.1213e8",
+                "2f380911.38291e"
+            ]
+        ]
+    },
+    {
+        "id": "128b8101.964edf",
+        "type": "inject",
+        "z": "7c24ffae.00d628",
+        "name": "Test",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 700,
+        "wires": [
+            [
+                "2f34f44a.aca02c"
+            ]
+        ]
+    },
+    {
+        "id": "fccadfe1.1213e8",
+        "type": "debug",
+        "z": "7c24ffae.00d628",
+        "name": "raw jsonl buffer",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 860,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "68f04d22.48df04",
+        "type": "change",
+        "z": "7c24ffae.00d628",
+        "name": "Earthquake Events",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "records/country_code=mx/device_id=000/year=2017/month=11/day=30/hour=23/55.jsonl",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "records/country_code=mx/device_id=006/year=2018/month=02/day=16/hour=23/35.jsonl",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "records/country_code=pr/device_id=3ef3d787af85/year=2020/month=06/day=01/hour=12/05.jsonl",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "records/country_code=pr/device_id=3ef3d787af85/year=2020/month=06/day=04/hour=14/45.jsonl",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "records/country_code=mx/device_id=027/year=2020/month=06/day=07/hour=03/05.jsonl",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "records/country_code=mx/device_id=006/year=2018/month=02/day=16/hour=23/40.jsonl",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 780,
+        "wires": [
+            [
+                "3ae65da1.10998a",
+                "c0aec953.5364e8"
+            ]
+        ]
+    },
+    {
+        "id": "3ae65da1.10998a",
+        "type": "debug",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "filename",
+        "targetType": "msg",
+        "x": 610,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "646ea66c.a28e9",
+        "type": "ui_chart",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "group": "ddd82afb.cfe3c",
+        "order": 6,
+        "width": "18",
+        "height": "5",
+        "label": "Y",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff7f0e",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1110,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "597b29ff.371d",
+        "type": "ui_chart",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "group": "ddd82afb.cfe3c",
+        "order": 7,
+        "width": "18",
+        "height": "5",
+        "label": "Z",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": true,
+        "useUTC": false,
+        "colors": [
+            "#d62728",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1110,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8ecb3e7f.3403d",
+        "type": "change",
+        "z": "7c24ffae.00d628",
+        "name": "Zero Graphs",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "delete",
+                "p": "datestamp",
+                "pt": "flow"
+            },
+            {
+                "t": "delete",
+                "p": "hour",
+                "pt": "flow"
+            },
+            {
+                "t": "delete",
+                "p": "miinute",
+                "pt": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 940,
+        "wires": [
+            [
+                "597b29ff.371d",
+                "646ea66c.a28e9",
+                "ea5f6142.e0e7",
+                "4f296647.ff86b8"
+            ]
+        ]
+    },
+    {
+        "id": "3b49e0ff.32aef",
+        "type": "inject",
+        "z": "7c24ffae.00d628",
+        "name": "Reset",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 570,
+        "y": 940,
+        "wires": [
+            [
+                "8ecb3e7f.3403d"
+            ]
+        ]
+    },
+    {
+        "id": "ea5f6142.e0e7",
+        "type": "ui_chart",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "group": "ddd82afb.cfe3c",
+        "order": 5,
+        "width": "18",
+        "height": "5",
+        "label": "X",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "5",
+        "removeOlderPoints": "10000",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1110,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f380911.38291e",
+        "type": "function",
+        "z": "7c24ffae.00d628",
+        "name": "Build Quake Charts",
+        "func": "var jsonl = msg.payload.toString().split('\\n');\nvar first_event = JSON.parse(jsonl[0]);\n\n\nvar first_ts = first_event.device_t;\nvar Xchart = [{\n    \"series\":[\"X\"],\n    \"data\":[[{\"x\":(first_event.device_t*1000),\"y\":first_event.x[0]}]],\n    \"labels\":[\"\"]\n}];\nvar Ychart = [{\n    \"series\":[\"Y\"],\n    \"data\":[[{\"x\":(first_event.device_t*1000),\"y\":first_event.y[0]}]],\n    \"labels\":[\"\"]\n}];\nvar Zchart = [{\n    \"series\":[\"Z\"],\n    \"data\":[[{\"x\":(first_event.device_t*1000),\"y\":first_event.z[0]}]],\n    \"labels\":[\"\"]\n}];\n\nvar event= {};\nvar data = {};\nfor( i=0; i<jsonl.length-1;i++ ){\n    // Build an array of events\n    event = JSON.parse(jsonl[i]);\n\n    for(j=0;j<event.x.length;j++) {\n\n        // Build a X chart\n        data = {\"x\":(event.device_t*1000+(j*3)), \"y\":event.x[j]} ;\n        Xchart[0].data[0].push(data);\n    \n        // Build a Y chart\n        data = {\"x\":(event.device_t*1000+(j*3)), \"y\":event.y[j]} ;\n        Ychart[0].data[0].push(data);\n        \n        // Build a Z chart\n        data = {\"x\":(event.device_t*1000+(j*3)), \"y\":event.z[j]} ;\n        Zchart[0].data[0].push(data);\n    }\n}\n\nvar xmsg = {};\nvar ymsg = {};\nvar zmsg = {};\nxmsg.payload = Xchart;\nymsg.payload = Ychart;\nzmsg.payload = Zchart;\nreturn [ xmsg, ymsg, xmsg];",
+        "outputs": 3,
+        "noerr": 0,
+        "x": 730,
+        "y": 860,
+        "wires": [
+            [
+                "ea5f6142.e0e7"
+            ],
+            [
+                "646ea66c.a28e9"
+            ],
+            [
+                "597b29ff.371d"
+            ]
+        ]
+    },
+    {
+        "id": "fadaad45.42d248",
+        "type": "comment",
+        "z": "7c24ffae.00d628",
+        "name": "records/country_code=mx/device_id=027/year=2020/month=06/day=07/hour=03/05.jsonl",
+        "info": "",
+        "x": 350,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d420fa31.83d488",
+        "type": "ui_table",
+        "z": "7c24ffae.00d628",
+        "group": "bbbb76e6.b599a8",
+        "name": "Sensors",
+        "order": 6,
+        "width": "10",
+        "height": "13",
+        "columns": [
+            {
+                "field": "device_id",
+                "title": "Devices",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "lat",
+                "title": "Latitude",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "lon",
+                "title": "Longitude",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "location_display_name",
+                "title": "Location",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 620,
+        "y": 480,
+        "wires": [
+            [
+                "d7c975fa.fe6ee",
+                "5c43d8a2.99dd6"
+            ]
+        ]
+    },
+    {
+        "id": "c5a9d624.7144b8",
+        "type": "template",
+        "z": "7c24ffae.00d628",
+        "name": "Sensor Locations",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "device_id,lat,lon,location_display_name\n000,18.46,-97.4,Tehuacan\n001,15.67025,-96.4951,Costa central de Oaxaca\n002,15.8634,-97.0692,Puerto Escondido\n004,16.35073,-98.05096,Pinotepa Nacional\n005,16.43514,-95.02098,Juchitán\n006,16.68485,-98.40432,Límite Guerrero Oaxaca\n007,16.32395,-95.24342,Tehuantepec\n008,16.60877,-98.97822,Costa Chica Guerrero\n009,16.71743,-99.12173,Costa Chica Guerrero\n010,16.79264,-99.38999,Costa Chica Guerrero\n011,16.83632,-99.90182,Acapulco\n012,16.35993,-94.18839,Límite Oaxaca Chiapas\n013,16.35993,-94.18839,Límite Oaxaca Chiapas\n014,16.87247,-99.88662,Acapulco\n015,17.00836,-100.0895,Costa Grande Guerrero\n016,16.00631,-97.44738,Costa central de Oaxaca\n017,17.23433,-100.6307,Costa Grande Guerrero\n018,17.25936,-100.87556,Costa Grande Guerrero\n019,17.2725,-101.04604,Costa Grande Guerrero\n020,17.53705,-101.27655,Costa Grande Guerrero\n021,17.64069,-101.47923,Zihuatanaejo\n022,17.63601,-101.57063,Zihuatanaejo\n023,17.6516,-101.55154,Zihuatanaejo\n024,17.98208,-101.80662,Costa Grande Guerrero límite con Michoacán\n026,18.716,-98.778,Jantetelco\n027,19.048038,-98.271408,Cholula\n029,18.957042,-99.235981,Cuernavaca\n999,16.00631,-97.44738,Costa central de Oaxaca\n3ef3d787af85,18.025814,-66.861130, Ponce Puerto Rico",
+        "output": "str",
+        "x": 290,
+        "y": 480,
+        "wires": [
+            [
+                "43f44342.adaac4"
+            ]
+        ]
+    },
+    {
+        "id": "d7c975fa.fe6ee",
+        "type": "debug",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 810,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "43f44342.adaac4",
+        "type": "csv",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "x": 470,
+        "y": 480,
+        "wires": [
+            [
+                "d420fa31.83d488"
+            ]
+        ]
+    },
+    {
+        "id": "66531111.f53fc8",
+        "type": "comment",
+        "z": "7c24ffae.00d628",
+        "name": "Load List of Sensors",
+        "info": "",
+        "x": 390,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "c36fe957.7be1d",
+        "type": "comment",
+        "z": "7c24ffae.00d628",
+        "name": "Select a sensor to plot",
+        "info": "",
+        "x": 580,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "d35f0ef4.4aa45",
+        "type": "change",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SelectedSensor",
+                "pt": "flow",
+                "to": "payload.device_id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 950,
+        "y": 540,
+        "wires": [
+            [
+                "a8348766.194308",
+                "fe666a25.e5937"
+            ]
+        ]
+    },
+    {
+        "id": "a8348766.194308",
+        "type": "debug",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.device_id",
+        "targetType": "msg",
+        "x": 1220,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "5c43d8a2.99dd6",
+        "type": "switch",
+        "z": "7c24ffae.00d628",
+        "name": "Did Selected Sensor Change",
+        "property": "payload.device_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "SelectedSensor",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 640,
+        "y": 540,
+        "wires": [
+            [
+                "8bb5fd54.5fc87",
+                "d35f0ef4.4aa45"
+            ]
+        ]
+    },
+    {
+        "id": "8bb5fd54.5fc87",
+        "type": "change",
+        "z": "7c24ffae.00d628",
+        "name": "Zero Graphs",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[]",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 910,
+        "y": 640,
+        "wires": [
+            [
+                "ea5f6142.e0e7",
+                "646ea66c.a28e9",
+                "597b29ff.371d"
+            ]
+        ]
+    },
+    {
+        "id": "df37bb06.f1456",
+        "type": "ui_ui_control",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "events": "all",
+        "x": 100,
+        "y": 440,
+        "wires": [
+            [
+                "e8c5579a.c452f8"
+            ]
+        ]
+    },
+    {
+        "id": "e8c5579a.c452f8",
+        "type": "delay",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 100,
+        "y": 480,
+        "wires": [
+            [
+                "c5a9d624.7144b8"
+            ]
+        ]
+    },
+    {
+        "id": "669f7923.5ccb4",
+        "type": "ui_text",
+        "z": "7c24ffae.00d628",
+        "group": "bbbb76e6.b599a8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Select a sensor to review",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 150,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a637d497.edbc18",
+        "type": "ui_dropdown",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "label": "Select an Hour",
+        "tooltip": "",
+        "place": "Select hour",
+        "group": "bbbb76e6.b599a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "12am",
+                "value": "00",
+                "type": "str"
+            },
+            {
+                "label": "1am",
+                "value": "01",
+                "type": "str"
+            },
+            {
+                "label": "2am",
+                "value": "02",
+                "type": "str"
+            },
+            {
+                "label": "3am",
+                "value": "03",
+                "type": "str"
+            },
+            {
+                "label": "4am",
+                "value": "04",
+                "type": "str"
+            },
+            {
+                "label": "5am",
+                "value": "05",
+                "type": "str"
+            },
+            {
+                "label": "6am",
+                "value": "06",
+                "type": "str"
+            },
+            {
+                "label": "7am",
+                "value": "07",
+                "type": "str"
+            },
+            {
+                "label": "8am",
+                "value": "08",
+                "type": "str"
+            },
+            {
+                "label": "9am",
+                "value": "09",
+                "type": "str"
+            },
+            {
+                "label": "10am",
+                "value": "10",
+                "type": "str"
+            },
+            {
+                "label": "11am",
+                "value": "11",
+                "type": "str"
+            },
+            {
+                "label": "12pm",
+                "value": "12",
+                "type": "str"
+            },
+            {
+                "label": "1pm",
+                "value": "13",
+                "type": "str"
+            },
+            {
+                "label": "2pm",
+                "value": "14",
+                "type": "str"
+            },
+            {
+                "label": "3pm",
+                "value": "15",
+                "type": "str"
+            },
+            {
+                "label": "4pm",
+                "value": "16",
+                "type": "str"
+            },
+            {
+                "label": "5pm",
+                "value": "17",
+                "type": "str"
+            },
+            {
+                "label": "6pm",
+                "value": "18",
+                "type": "str"
+            },
+            {
+                "label": "7pm",
+                "value": "19",
+                "type": "str"
+            },
+            {
+                "label": "8pm",
+                "value": "20",
+                "type": "str"
+            },
+            {
+                "label": "9pm",
+                "value": "21",
+                "type": "str"
+            },
+            {
+                "label": "10pm",
+                "value": "22",
+                "type": "str"
+            },
+            {
+                "label": "11pm",
+                "value": "23",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "962a0f45.ec38c"
+            ]
+        ]
+    },
+    {
+        "id": "e7ac1285.aadd98",
+        "type": "ui_dropdown",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "label": "Select an 5 minute range",
+        "tooltip": "",
+        "place": "Select 5 minute range",
+        "group": "bbbb76e6.b599a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "00-05",
+                "value": "00.jsonl",
+                "type": "str"
+            },
+            {
+                "label": "05-10",
+                "value": "05.jsonl",
+                "type": "str"
+            },
+            {
+                "label": "10-15",
+                "value": "10.jsonl",
+                "type": "str"
+            },
+            {
+                "label": "15-20",
+                "value": "15.jsonl",
+                "type": "str"
+            },
+            {
+                "label": "20-25",
+                "value": "20.jsonl",
+                "type": "str"
+            },
+            {
+                "label": "25-30",
+                "value": "25.jsonl",
+                "type": "str"
+            },
+            {
+                "label": "30-35",
+                "value": "30.jsonl",
+                "type": "str"
+            },
+            {
+                "label": "35-40",
+                "value": "35.jsonl",
+                "type": "str"
+            },
+            {
+                "label": "40-45",
+                "value": "40.jsonl",
+                "type": "str"
+            },
+            {
+                "label": "45-50",
+                "value": "45.jsonl",
+                "type": "str"
+            },
+            {
+                "label": "50-55",
+                "value": "50.jsonl",
+                "type": "str"
+            },
+            {
+                "label": "55-60",
+                "value": "55.jsonl",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "25126ea.da8ec12"
+            ]
+        ]
+    },
+    {
+        "id": "948dc38c.37fa9",
+        "type": "debug",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 690,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "80648b21.3f2748",
+        "type": "debug",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 690,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "293bcafb.2aaef6",
+        "type": "debug",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 690,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "edfe50c.e9eed3",
+        "type": "change",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "datestamp",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 60,
+        "wires": [
+            [
+                "948dc38c.37fa9",
+                "fe666a25.e5937"
+            ]
+        ]
+    },
+    {
+        "id": "962a0f45.ec38c",
+        "type": "change",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "hour",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 100,
+        "wires": [
+            [
+                "80648b21.3f2748",
+                "fe666a25.e5937"
+            ]
+        ]
+    },
+    {
+        "id": "25126ea.da8ec12",
+        "type": "change",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "minute",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "293bcafb.2aaef6",
+                "fe666a25.e5937"
+            ]
+        ]
+    },
+    {
+        "id": "4eea38c6.7c3fb8",
+        "type": "ui_button",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "group": "ddd82afb.cfe3c",
+        "order": 3,
+        "width": "9",
+        "height": "1",
+        "passthru": false,
+        "label": "Retrieve data and plot",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 140,
+        "y": 640,
+        "wires": [
+            [
+                "beff5e93.c3a63"
+            ]
+        ]
+    },
+    {
+        "id": "fe666a25.e5937",
+        "type": "function",
+        "z": "7c24ffae.00d628",
+        "name": "Build filename",
+        "func": "var ts     = flow.get(\"datestamp\")||\"\";\nvar hour   = flow.get(\"hour\")||\"[missing]\";\nvar minute = flow.get(\"minute\")||\"[missing]\";\nvar device = flow.get(\"SelectedSensor\")||\"[missing]\";\nvar year = \"[missing]\";\nvar month= \"[missing]\";\nvar day  = \"[missing]\";\n\nif(ts) {\n    var record = new Date(ts);\n    year =record.getFullYear();\n    month=('0' + (record.getMonth()+1)).slice(-2); // padded\n    day  =('0' + record.getDate()).slice(-2);      // padded\n}\n\n// Build this filename:\n// records/country_code=mx/device_id=006/year=2018/month=02/day=16/hour=23/35.jsonl\n\nif( device != '3ef3d787af85') {\n    msg.payload = \"records/country_code=mx/device_id=\"+device+\"/year=\"+year+\"/month=\"+month+\"/day=\"+day+\"/hour=\"+hour+\"/\"+minute\n} else {\n    msg.payload = \"records/country_code=pr/device_id=\"+device+\"/year=\"+year+\"/month=\"+month+\"/day=\"+day+\"/hour=\"+hour+\"/\"+minute\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 240,
+        "wires": [
+            [
+                "6dba1387.a086bc",
+                "724d0bb6.9a28a4",
+                "1e03681e.8ec39"
+            ]
+        ]
+    },
+    {
+        "id": "6dba1387.a086bc",
+        "type": "debug",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 830,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "724d0bb6.9a28a4",
+        "type": "change",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 840,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f34f44a.aca02c",
+        "type": "change",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "filename",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 700,
+        "wires": [
+            [
+                "9182565d.65ef3",
+                "c0aec953.5364e8"
+            ]
+        ]
+    },
+    {
+        "id": "9182565d.65ef3",
+        "type": "debug",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "filename",
+        "targetType": "msg",
+        "x": 610,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "2d65aba9.e00b3c",
+        "type": "inject",
+        "z": "7c24ffae.00d628",
+        "name": "Test",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 780,
+        "wires": [
+            [
+                "68f04d22.48df04"
+            ]
+        ]
+    },
+    {
+        "id": "beff5e93.c3a63",
+        "type": "switch",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "property": "filename",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "missing",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 640,
+        "wires": [
+            [
+                "24c92fbd.fde9b"
+            ],
+            [
+                "2f34f44a.aca02c"
+            ]
+        ]
+    },
+    {
+        "id": "b4e1da42.b0ae4",
+        "type": "ui_toast",
+        "z": "7c24ffae.00d628",
+        "position": "top right",
+        "displayTime": "10",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "Show Error Msg",
+        "x": 720,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "24c92fbd.fde9b",
+        "type": "change",
+        "z": "7c24ffae.00d628",
+        "name": "More Info Needed",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Please provide missing query information",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 640,
+        "wires": [
+            [
+                "b4e1da42.b0ae4"
+            ]
+        ]
+    },
+    {
+        "id": "1864f39b.70441c",
+        "type": "ui_button",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "group": "ddd82afb.cfe3c",
+        "order": 4,
+        "width": "9",
+        "height": "1",
+        "passthru": false,
+        "label": "Reset",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 570,
+        "y": 900,
+        "wires": [
+            [
+                "8ecb3e7f.3403d"
+            ]
+        ]
+    },
+    {
+        "id": "4f296647.ff86b8",
+        "type": "link out",
+        "z": "7c24ffae.00d628",
+        "name": "Reset In",
+        "links": [
+            "b0aa5a7f.d6162"
+        ],
+        "x": 955,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "b0aa5a7f.d6162",
+        "type": "link in",
+        "z": "7c24ffae.00d628",
+        "name": "Reset",
+        "links": [
+            "4f296647.ff86b8"
+        ],
+        "x": 375,
+        "y": 240,
+        "wires": [
+            [
+                "fe666a25.e5937"
+            ]
+        ]
+    },
+    {
+        "id": "d5cac592.15e4a8",
+        "type": "catch",
+        "z": "7c24ffae.00d628",
+        "name": "Object Storage Errors",
+        "scope": [
+            "c0aec953.5364e8"
+        ],
+        "uncaught": false,
+        "x": 140,
+        "y": 600,
+        "wires": [
+            [
+                "98c52359.293e18",
+                "6d60e358.96571c"
+            ]
+        ]
+    },
+    {
+        "id": "98c52359.293e18",
+        "type": "switch",
+        "z": "7c24ffae.00d628",
+        "name": "Failure?",
+        "property": "error.message",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "download failed",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 600,
+        "wires": [
+            [
+                "b2b19528.3fbe68"
+            ]
+        ]
+    },
+    {
+        "id": "b2b19528.3fbe68",
+        "type": "change",
+        "z": "7c24ffae.00d628",
+        "name": "Download fail",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The requested object storage file does not exist ",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 600,
+        "wires": [
+            [
+                "b4e1da42.b0ae4"
+            ]
+        ]
+    },
+    {
+        "id": "6d60e358.96571c",
+        "type": "debug",
+        "z": "7c24ffae.00d628",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "error",
+        "targetType": "msg",
+        "x": 350,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "1e03681e.8ec39",
+        "type": "function",
+        "z": "7c24ffae.00d628",
+        "name": "Build a html link to the dataset",
+        "func": "// Build a html link to the dataset \n// strip off the trailing /00.jsonl\nvar template =\"<p>Sensor dataset to plot : <strong><a href=https://s3.amazonaws.com/grillo-openeew/index.html#\"\ntemplate = template + msg.payload.slice(0, -8) ;\ntemplate = template +\">\"+msg.payload+\"</a></strong></p>\"\nmsg.payload = template;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 890,
+        "y": 200,
+        "wires": [
+            [
+                "1a6a43f2.800604"
+            ]
+        ]
+    },
+    {
+        "id": "1a6a43f2.800604",
+        "type": "ui_template",
+        "z": "7c24ffae.00d628",
+        "group": "ddd82afb.cfe3c",
+        "name": "Sensor dataset to plot",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1160,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bbbb76e6.b599a8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Historical Review",
+        "tab": "4eb26e08.8b4d",
+        "order": 1,
+        "disp": true,
+        "width": "10",
+        "collapse": false
+    },
+    {
+        "id": "ddd82afb.cfe3c",
+        "type": "ui_group",
+        "z": "",
+        "name": "Quake Playback Graph",
+        "tab": "4eb26e08.8b4d",
+        "order": 2,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "4eb26e08.8b4d",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Quake Playback v3",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
