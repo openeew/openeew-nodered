@@ -83,21 +83,26 @@ if( alert ) {
 This flow displays a Node-RED dashboard which presents the investigator / seismologist with a calendar,
 time interval options and a list of OpenEEW sensors. The investigator selects an interesting sensor
 and time period to study and queries the OpenEEW dataset. The flow then plots the historical sensor
-data in a set of graphs.
+data in a set of graphs. For this flow to work correctly, you will need credentials to the AWS bucket.
 
 The flow constructs a cloud object storage filename for the selected sensor and time interval and retrieves the historical sensor data from the
 [OpenEEW dataset](https://s3.amazonaws.com/grillo-openeew/index.html#records/)
-and plays it back into a graph in a Node-RED Dashboard.  The screenshot is of a
+and plays it back into a graph in a Node-RED Dashboard.  
+
+The "Next" button in the Historical Quake Playback Node-RED dashboard is incredibly insightful. The focus is often on the big earthquakes, and their specific timestamp / dataset.  The "Next" button lets the investigator explore the numerous aftershocks.  Start with the Mexico 7.2 magnitude earthquake on Feb 16 2018 23:35 and its data set and then click the Next button to watch (in 5 minute increments) the aftershocks that occurred over the next several hours.
+
+![OpenEEW Historical Playback Dashboard](images/openeew-quakeplaybackv4-dashboard.png?raw=true "OpenEEW Dashboard")
+
+Here is another screenshot of a
 magnitude 4.1 earthquake in Puerto Rico on
 [2020-06-01 12:05:51](https://s3.amazonaws.com/grillo-openeew/index.html#records/country_code=pr/device_id=3ef3d787af85/year=2020/month=06/day=01/hour=12/05.jsonl).
-For this flow to work correctly, you will need credentials to the AWS bucket.
 
 ![OpenEEW Historical Playback Dashboard](images/openeew-quakeplaybackv3-dashboard.png?raw=true "OpenEEW Dashboard")
 <p align="center">
-  <strong>Get the Code: <a href="flows/openeew-quakemap-v3.json">Node-RED flow for OpenEEW Historical Playback</strong></a>
+  <strong>Get the Code: <a href="flows/openeew-quakemap-v4.json">Node-RED flow for OpenEEW Historical Playback</strong></a>
 </p>
 
-![OpenEEW Historical Playback Flow](images/openeew-quakeplaybackv3-flow.png?raw=true "OpenEEW flow")
+![OpenEEW Historical Playback Flow](images/openeew-quakeplaybackv4-flow.png?raw=true "OpenEEW flow")
 
 ---
 ### A flow that plots historical seismic activity playback from the OpenEEW dataset
