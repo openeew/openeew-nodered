@@ -191,6 +191,11 @@ Get free access to the [IBM Cloud](https://developer.ibm.com/dwwi/jsp/register.j
 
 Brush up on your cloud skills while making a real difference and get involved with these open source projects supported by the Linux Foundation.
 
+## Additional Resources
+- Another Node-RED Earthquake map example which plots USGS earthquake data can be found
+[here](https://github.com/johnwalicki/Node-RED-Earthquake-Dashboard)
+
+
 ### Authors
 
 - [John Walicki](https://github.com/johnwalicki)
