@@ -1,20 +1,54 @@
 # Node-RED Open Earthquake Early Warning Alert Map
-Build a Earthquake Early Warning Alert Map Node-RED Dashboard using OpenEEW data feed
+Build a Earthquake Early Warning Alert Map Node-RED Dashboard using OpenEEW data
 
-These example flows and Node-RED Dashboard might be useful as part of an Earthquake Early Warning system.
+Learn how to build an Earthquake Early Warning system using live [OpenEEW](http://openeew.com) sensor data and visualize
+historical seismic datasets in Node-RED Dashboards.
 
-Another Node-RED Earthquake map example which plots USGS earthquake data can be found
-[here](https://github.com/johnwalicki/Node-RED-Earthquake-Dashboard)
+These example flows and Node-RED Dashboards might be useful as part of an Earthquake Early Warning system.
+Join the Call for Code challenge and contribute to open source projects.
+
+![OpenEEW Earthquake animation](images/mx72mag.gif?raw=true "OpenEEW graph animation")
+
+### Learning Objectives
+
+In this tutorial, you will:
+
+- Install Node-RED and the prerequistes required to build the dashboards
+- Learn how to program an algorithm to detect seismic shaking
+- Construct a dashboard that displays live Earthquake Early Warning Sensor Alerts on a map and sends a SMS warning if a possible earthquake is detected.
+- Construct a dashboard that plots real time seismic activity sensor graphs in a chart by subscribing to a MQTT broker.
+- Construct a dashboard that plots the historical seismic activity from an OpenEEW dataset
+
+## Estimated time
+
+Completing this tutorial should take about 30 minutes.
 
 ### Prerequistes
 
 - [Install Node-RED](https://nodered.org/docs/getting-started/) on your system or in the cloud
+  - This flow can be deployed to [IBM Cloud](https://developer.ibm.com/dwwi/jsp/register.jsp?eventid=cfc-2020-projects) by creating a [Node-RED Starter Application](https://developer.ibm.com/components/node-red/tutorials/how-to-create-a-node-red-starter-application/)
 - [Add the following nodes](https://nodered.org/docs/user-guide/runtime/adding-nodes) to your Node-RED palette
   - [node-red-dashboard](https://flows.nodered.org/node/node-red-dashboard)
   - [node-red-contrib-web-worldmap](https://flows.nodered.org/node/node-red-contrib-web-worldmap)
   - [node-red-node-twilio](https://flows.nodered.org/node/node-red-node-twilio)
   - [node-red-node-ui-table](https://flows.nodered.org/node/node-red-node-ui-table)
-  - [node-red-node-aws](https://flows.nodered.org/node/node-red-node-aws)
+
+  #### Local installation instructions
+
+  ```
+  npm install node-red-dashboard node-red-contrib-web-worldmap node-red-node-twilio node-red-node-ui-table
+  ```
+
+  #### IBM Cloud installation instructions
+
+  - Instead of adding the additional packages via **Manage Palette**, use the IBM Cloud Toolchain and the git repository in IBM Cloud to add the following packages to the package.json. Commit the change and the CI/CD toolchain will restage the CF application.
+
+  ```
+  "node-red-dashboard":"2.x",
+  "node-red-contrib-web-worldmap":"2.x",
+  "node-red-node-twilio":"0.x",
+  "node-red-node-ui-table":"0.x",
+  ```    
 
 ### Seismic Activity algorithm
 
@@ -58,8 +92,18 @@ if( alert ) {
 ```
 
 ## Node-RED flow examples in this repository:
+
+Learn how to implement OpenEEW Node-RED dashboards using these example flows.
+
+Four examples are provided in the [flows](https://github.com/openeew/openeew-nodered/flows) folder.
+
 ---
-### A flow that displays Earthquake Early Warning Sensor Alerts on a map
+### Example #1 - A flow that displays Earthquake Early Warning Sensor Alerts on a map
+
+This flow plots the OpenEEW sensors on a map of Mexico and displays their seismic activity status.
+The flow subscribes to the live data feed of the sensors using MQTT.
+If any of the sensors have not checked in for 30 seconds mark the sensor offline.
+If the seismic algorithm detects shaking, mark the sensor in red and send a Twilio SMS alert to warn residents to seek safety.
 
 ![OpenEEW Alert Dashboard](images/openeew-quakemap-v1-dashboard.png?raw=true "OpenEEW Dashboard")
 <p align="center">
@@ -68,7 +112,10 @@ if( alert ) {
 
 ![OpenEEW Sensor Plot flow](images/openeew-quakemap-v2-flow.png?raw=true "OpenEEW flow")
 ---
-### A flow that plots (near) real time Seismic activity sensor graphs in a chart
+### Example #2 - A flow that plots (near) real time Seismic activity sensor graphs in a chart
+
+This flow subscribes to the live data feed (available via MQTT) of a selected sensor and plots the seismic activity in a set of
+X / Y / Z graphs.
 
 ![OpenEEW Sensor Dashboard](images/openeew-sensorplot-dashboard.png?raw=true "OpenEEW Dashboard")
 <p align="center">
@@ -78,41 +125,56 @@ if( alert ) {
 ![OpenEEW Sensor flow](images/openeew-sensorplot-flow.png?raw=true "OpenEEW flow")
 
 ---
-### Select a Sensor and time range, plot the historical seismic activity from that OpenEEW dataset
+### Example #3 - Select a Sensor and time range, plot the historical seismic activity from a OpenEEW dataset
 
 This flow displays a Node-RED dashboard which presents the investigator / seismologist with a calendar,
 time interval options and a list of OpenEEW sensors. The investigator selects an interesting sensor
 and time period to study and queries the OpenEEW dataset. The flow then plots the historical sensor
-data in a set of graphs. For this flow to work correctly, you will need credentials to the AWS bucket.
+data in a set of graphs.
 
-The flow constructs a cloud object storage filename for the selected sensor and time interval and retrieves the historical sensor data from the
+The flow constructs a URL for the selected sensor and time interval and retrieves the historical sensor data from the
 [OpenEEW dataset](https://s3.amazonaws.com/grillo-openeew/index.html#records/)
 and plays it back into a graph in a Node-RED Dashboard.  
 
-The "Next" button in the Historical Quake Playback Node-RED dashboard is incredibly insightful. The focus is often on the big earthquakes, and their specific timestamp / dataset.  The "Next" button lets the investigator explore the numerous aftershocks.  Start with the Mexico 7.2 magnitude earthquake on Feb 16 2018 23:35 and its data set and then click the Next button to watch (in 5 minute increments) the aftershocks that occurred over the next several hours.
+The "Next" button in the Historical Quake Playback Node-RED dashboard is incredibly insightful. The focus is often on the big earthquakes, and their specific timestamp / dataset.  The "Next" button lets the investigator explore the numerous aftershocks.  Start with the Mexico 7.2 magnitude earthquake on Feb 16 2018 23:35 and its data set and then click the Next button to watch (in 5 minute increments) the aftershocks that occurred over the next several hours.  Watch the animated gif of the earthquake and aftershock activity.
 
-![OpenEEW Historical Playback Dashboard](images/openeew-quakeplaybackv4-dashboard.png?raw=true "OpenEEW Dashboard")
+You can also observe the seismic activity by using the AutoPlay feature. Turn on the AutoPlay switch and select the number of minutes of playback.
+
+The screenshot is of a
+[magnitude 7.2 earthquake in Mexico](https://blog.grillo.io/analyzing-a-magnitude-7-2-earthquake-in-mexico-using-python-6272a4ff63e3) on
+[2018-02-16 23:43:00](https://s3.amazonaws.com/grillo-openeew/index.html#records/country_code=mx/device_id=006/year=2018/month=02/day=16/hour=23/40.jsonl).
+
+![OpenEEW Historical Playback Dashboard](images/openeew-quakeplaybackv5-dashboard.png?raw=true "OpenEEW Dashboard")
 
 Here is another screenshot of a
 magnitude 4.1 earthquake in Puerto Rico on
-[2020-06-01 12:05:51](https://s3.amazonaws.com/grillo-openeew/index.html#records/country_code=pr/device_id=3ef3d787af85/year=2020/month=06/day=01/hour=12/05.jsonl).
+[2020-06-01 12:05:51](https://s3.amazonaws.com/grillo-openeew/index.html#records/country_code=pr/device_id=3ef3d787af85/year=2020/month=06/day=01/hour=12/05.jsonl)
 
 ![OpenEEW Historical Playback Dashboard](images/openeew-quakeplaybackv3-dashboard.png?raw=true "OpenEEW Dashboard")
 <p align="center">
-  <strong>Get the Code: <a href="flows/openeew-quakemap-v4.json">Node-RED flow for OpenEEW Historical Playback</strong></a>
+  <strong>Get the Code: <a href="flows/openeew-quakemap-v5.json">Node-RED flow for OpenEEW Historical Playback</strong></a>
 </p>
 
-![OpenEEW Historical Playback Flow](images/openeew-quakeplaybackv4-flow.png?raw=true "OpenEEW flow")
+![OpenEEW Historical Playback Flow](images/openeew-quakeplaybackv5-flow.png?raw=true "OpenEEW flow")
+
+This flow has six sections:
+1. The **Select a Historical Date** section displays a Node-RED Dashboard which allows the earthquake investigator to select a date from a Calendar widget, drop down widgets to select the hour and 5 minute segment, an option to AutoPlay the data for several minutes. These selections are stored in flow variables.
+1. The **Build / Display OpenEEW dataset to retrieve** section takes the selected dates and constructs the dataset file to be downloaded / plotted.
+1. The **Select a Sensor to plot** section lists a table of sensors and their location coordinates.
+1. The **Next dataset** section provides a Next button and AutoPlay option to cycle through a timeseries of adjacent datasets. It calculates the name of the next dataset to be retrieved (handling all edge cases and leap years)
+1. The **Plot the seismic graphs** section ingests the dataset and builds X / Y / Z graphs of the sensor and seismic activity.
+1. The **Download a historical sensor data set** section retrieves the OpenEEW dataset using an http request node (no credentials required).
+Error messages are displayed if insufficient selections have been made or if the dataset is not available.
 
 ---
-### A flow that plots historical seismic activity playback from the OpenEEW dataset
+### Example #4 - A flow that plots historical seismic activity playback from the OpenEEW dataset
 
+I created many Node-RED flows during my OpenEEW seismic graphing learning journey. Here is one of my beginning / simplistic iterations.
 This flow reads a file from a bucket of historical sensor data from the
 [OpenEEW dataset](https://s3.amazonaws.com/grillo-openeew/index.html#records/)
-and plays it back into a graph in a Node-RED Dashboard.  The screenshot is of a
+using an AWS cloud object storage node (you would need credentials to reproduce it).  The Node-RED flow plays the data back into a graph in a Node-RED Dashboard.  The screenshot is of a
 [magnitude 7.2 earthquake in Mexico](https://blog.grillo.io/analyzing-a-magnitude-7-2-earthquake-in-mexico-using-python-6272a4ff63e3) on
 [2018-02-16 23:43:00](https://s3.amazonaws.com/grillo-openeew/index.html#records/country_code=mx/device_id=006/year=2018/month=02/day=16/hour=23/40.jsonl).
-For this flow to work correctly, you will need credentials to the AWS bucket.
 
 ![OpenEEW Historical Playback Dashboard](images/openeew-quakeplayback-dashboard.png?raw=true "OpenEEW Dashboard")
 
