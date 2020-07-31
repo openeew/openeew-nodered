@@ -181,6 +181,16 @@ using an AWS cloud object storage node (you would need credentials to reproduce 
 ![OpenEEW Historical Playback Flow](images/openeew-quakeplayback-flow.png?raw=true "OpenEEW flow")
 ---
 
+## The OpenEEW open source projects need you
+
+Now that you have completed this tutorial, you are ready to modify these example flows and your own Node-RED Dashboard to build an OpenEEW Earthquake Early Warning data visualization solution.
+
+Join the cutting-edge community and build open source projects to fight back against the most pressing issues of our time. See your code deployed to help those in need.
+
+Get free access to the [IBM Cloud](https://developer.ibm.com/dwwi/jsp/register.jsp?eventid=cfc-2020-projects)
+
+Brush up on your cloud skills while making a real difference and get involved with these open source projects supported by the Linux Foundation.
+
 ### Authors
 
 - [John Walicki](https://github.com/johnwalicki)
