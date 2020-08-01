@@ -95,7 +95,7 @@ if( alert ) {
 
 Learn how to implement OpenEEW Node-RED dashboards using these example flows.
 
-Four examples are provided in the [flows](https://github.com/openeew/openeew-nodered/flows) folder.
+Four examples are provided in the [flows](https://github.com/openeew/openeew-nodered/tree/master/flows) folder.
 
 ---
 ### Example #1 - A flow that displays Earthquake Early Warning Sensor Alerts on a map
