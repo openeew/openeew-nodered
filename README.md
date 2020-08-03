@@ -9,13 +9,13 @@ Join the Call for Code challenge and contribute to open source projects.
 
 ![OpenEEW Earthquake animation](images/mx72mag.gif?raw=true "OpenEEW graph animation")
 
-### Examples
+### Examples Index
 
 - [Install Node-RED and the prerequistes required to build the dashboards](#prerequistes)
 - [Learn how to program an algorithm to detect seismic shaking](#seismic-activity-algorithm)
-- [Construct a dashboard that displays live Earthquake Early Warning Sensor Alerts on a map and sends a SMS warning if a possible earthquake is detected](#example-1-:-a-flow-that-displays-earthquake-early-warning-sensor-alerts-on-a-map)
-- [Construct a dashboard that plots real time seismic activity sensor graphs in a chart by subscribing to a MQTT broker](#example-2-:-a-flow-that-plots-near-real-time-seismic-activity-sensor-graphs-in-a-chart)
-- [Construct a dashboard that plots the historical seismic activity from an OpenEEW dataset](#example-3-:-select-a-sensor-and-time-range-,-plot-the-historical-seismic-activity-from-a-openeew-dataset)
+- [Construct a dashboard that displays live Earthquake Early Warning Sensor Alerts on a map and sends a SMS warning if a possible earthquake is detected](#example1)
+- [Construct a dashboard that plots real time seismic activity sensor graphs in a chart by subscribing to a MQTT broker](#example2)
+- [Construct a dashboard that plots the historical seismic activity from an OpenEEW dataset](#example3)
 
 ### Prerequistes
 
@@ -92,6 +92,7 @@ Learn how to implement OpenEEW Node-RED dashboards using these example flows.
 Four examples are provided in the [flows](https://github.com/openeew/openeew-nodered/tree/master/flows) folder.
 
 ---
+<a name="example1"></a>
 ### Example 1 : A flow that displays Earthquake Early Warning Sensor Alerts on a map
 
 This flow plots the OpenEEW sensors on a map of Mexico and displays their seismic activity status.
@@ -106,6 +107,7 @@ If the seismic algorithm detects shaking, mark the sensor in red and send a Twil
 
 ![OpenEEW Sensor Plot flow](images/openeew-quakemap-v2-flow.png?raw=true "OpenEEW flow")
 ---
+<a name="example2"></a>
 ### Example 2 : A flow that plots near real time Seismic activity sensor graphs in a chart
 
 This flow subscribes to the live data feed (available via MQTT) of a selected sensor and plots the seismic activity in a set of
@@ -119,6 +121,7 @@ X / Y / Z graphs.
 ![OpenEEW Sensor flow](images/openeew-sensorplot-flow.png?raw=true "OpenEEW flow")
 
 ---
+<a name="example3"></a>
 ### Example 3 : Select a Sensor and time range, plot the historical seismic activity from a OpenEEW dataset
 
 This flow displays a Node-RED dashboard which presents the investigator / seismologist with a calendar,
@@ -161,7 +164,8 @@ This flow has six sections:
 Error messages are displayed if insufficient selections have been made or if the dataset is not available.
 
 ---
-### Example 4 - A flow that plots historical seismic activity playback from the OpenEEW dataset
+<a name="example4"></a>
+### Example 4 : A flow that plots historical seismic activity playback from the OpenEEW dataset
 
 I created many Node-RED flows during my OpenEEW seismic graphing learning journey. Here is one of my beginning / simplistic iterations.
 This flow reads a file from a bucket of historical sensor data from the
@@ -177,7 +181,7 @@ using an AWS cloud object storage node (you would need credentials to reproduce 
 
 ## The OpenEEW open source project needs you
 
-Now that you have completed this tutorial, you are ready to modify these example flows and your own Node-RED Dashboard to build an OpenEEW Earthquake Early Warning data visualization solution.  There are several [OpenEEW GitHub project repositories](https://github.com/openeew) that you can contribute to.
+Now that you have completed these examples, you are ready to modify these example flows and your own Node-RED Dashboard to build an OpenEEW Earthquake Early Warning data visualization solution.  There are several [OpenEEW GitHub project repositories](https://github.com/openeew) that you can contribute to.
 
 Join the cutting-edge community and build open source projects to fight back against the most pressing issues of our time. See your code deployed to help those in need.
 
