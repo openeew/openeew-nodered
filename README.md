@@ -9,19 +9,13 @@ Join the Call for Code challenge and contribute to open source projects.
 
 ![OpenEEW Earthquake animation](images/mx72mag.gif?raw=true "OpenEEW graph animation")
 
-### Learning Objectives
+### Examples
 
-In this tutorial, you will:
-
-- Install Node-RED and the prerequistes required to build the dashboards
-- Learn how to program an algorithm to detect seismic shaking
-- Construct a dashboard that displays live Earthquake Early Warning Sensor Alerts on a map and sends a SMS warning if a possible earthquake is detected.
-- Construct a dashboard that plots real time seismic activity sensor graphs in a chart by subscribing to a MQTT broker.
-- Construct a dashboard that plots the historical seismic activity from an OpenEEW dataset
-
-## Estimated time
-
-Completing this tutorial should take about 30 minutes.
+- [Install Node-RED and the prerequistes required to build the dashboards](#prerequistes)
+- [Learn how to program an algorithm to detect seismic shaking](#seismic-activity-algorithm)
+- [Construct a dashboard that displays live Earthquake Early Warning Sensor Alerts on a map and sends a SMS warning if a possible earthquake is detected](#example-1-:-a-flow-that-displays-earthquake-early-warning-sensor-alerts-on-a-map)
+- [Construct a dashboard that plots real time seismic activity sensor graphs in a chart by subscribing to a MQTT broker](#example-2-:-a-flow-that-plots-near-real-time-seismic-activity-sensor-graphs-in-a-chart)
+- [Construct a dashboard that plots the historical seismic activity from an OpenEEW dataset](#example-3-:-select-a-sensor-and-time-range-,-plot-the-historical-seismic-activity-from-a-openeew-dataset)
 
 ### Prerequistes
 
@@ -98,7 +92,7 @@ Learn how to implement OpenEEW Node-RED dashboards using these example flows.
 Four examples are provided in the [flows](https://github.com/openeew/openeew-nodered/tree/master/flows) folder.
 
 ---
-### Example #1 - A flow that displays Earthquake Early Warning Sensor Alerts on a map
+### Example 1 : A flow that displays Earthquake Early Warning Sensor Alerts on a map
 
 This flow plots the OpenEEW sensors on a map of Mexico and displays their seismic activity status.
 The flow subscribes to the live data feed of the sensors using MQTT.
@@ -112,7 +106,7 @@ If the seismic algorithm detects shaking, mark the sensor in red and send a Twil
 
 ![OpenEEW Sensor Plot flow](images/openeew-quakemap-v2-flow.png?raw=true "OpenEEW flow")
 ---
-### Example #2 - A flow that plots (near) real time Seismic activity sensor graphs in a chart
+### Example 2 : A flow that plots near real time Seismic activity sensor graphs in a chart
 
 This flow subscribes to the live data feed (available via MQTT) of a selected sensor and plots the seismic activity in a set of
 X / Y / Z graphs.
@@ -125,7 +119,7 @@ X / Y / Z graphs.
 ![OpenEEW Sensor flow](images/openeew-sensorplot-flow.png?raw=true "OpenEEW flow")
 
 ---
-### Example #3 - Select a Sensor and time range, plot the historical seismic activity from a OpenEEW dataset
+### Example 3 : Select a Sensor and time range, plot the historical seismic activity from a OpenEEW dataset
 
 This flow displays a Node-RED dashboard which presents the investigator / seismologist with a calendar,
 time interval options and a list of OpenEEW sensors. The investigator selects an interesting sensor
@@ -167,7 +161,7 @@ This flow has six sections:
 Error messages are displayed if insufficient selections have been made or if the dataset is not available.
 
 ---
-### Example #4 - A flow that plots historical seismic activity playback from the OpenEEW dataset
+### Example 4 - A flow that plots historical seismic activity playback from the OpenEEW dataset
 
 I created many Node-RED flows during my OpenEEW seismic graphing learning journey. Here is one of my beginning / simplistic iterations.
 This flow reads a file from a bucket of historical sensor data from the
