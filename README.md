@@ -102,10 +102,17 @@ If the seismic algorithm detects shaking, mark the sensor in red and send a Twil
 
 ![OpenEEW Alert Dashboard](images/openeew-quakemap-v1-dashboard.png?raw=true "OpenEEW Dashboard")
 <p align="center">
-  <strong>Get the Code: <a href="flows/openeew-quakemap-v2.json">Node-RED flow for OpenEEW Alerts</strong></a>
+  <strong>Get the Code: <a href="flows/openeew-sensorstatus.json">Node-RED flow for OpenEEW Alerts</strong></a>
 </p>
 
-![OpenEEW Sensor Plot flow](images/openeew-quakemap-v2-flow.png?raw=true "OpenEEW flow")
+![OpenEEW Sensor Status flow](images/openeew-sensorstatus-flow.png?raw=true "OpenEEW flow")
+
+This flow has four sections:
+1. The **One time - Add Sensor pins to Map** section drops pins on the terrain map at the latitude / longitude locations of the Grillo OpenEEW Earthquake Early Warning System sensor network.
+1. The **Report Sensor Status** section periodically checks if the sensors have recently reported, via MQTT, a seismic reading. If a sensor has not been seen during the last cycle, mark the device offline by changing the dropped pin to black with a warning symbol. When the sensor reconnects and comes back online, mark the device green on the map.
+1. The **Subscribe to OpenEEW Sensor Network / Monitor Sensor Status** section subscribes to the MQTT broker and records the timestamps of the devices as they report seismic readings.  Details about the MQTT broker credentials need to be acquired in the [Slack workspace](https://join.slack.com/t/openeew/shared_invite/zt-cibhc0za-XKReMPobi2DsrPusORJZVQ).
+1. The **Listen for possible Earthquakes** section runs the seismic activity shake algorithm described above.  If a possible earthquake is detected, send a Twilio alert and mark the dropped pin red on the map.  You will need to configure the Twilio SMS node with your [Twilio account](https://www.twilio.com/) details. 
+
 ---
 <a name="example2"></a>
 ### Example 2 : A flow that plots near real time Seismic activity sensor graphs in a chart
