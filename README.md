@@ -111,7 +111,7 @@ This flow has four sections:
 1. The **One time - Add Sensor pins to Map** section drops pins on the terrain map at the latitude / longitude locations of the Grillo OpenEEW Earthquake Early Warning System sensor network.
 1. The **Report Sensor Status** section periodically checks if the sensors have recently reported, via MQTT, a seismic reading. If a sensor has not been seen during the last cycle, mark the device offline by changing the dropped pin to black with a warning symbol. When the sensor reconnects and comes back online, mark the device green on the map.
 1. The **Subscribe to OpenEEW Sensor Network / Monitor Sensor Status** section subscribes to the MQTT broker and records the timestamps of the devices as they report seismic readings.  Details about the MQTT broker credentials need to be acquired in the [Slack workspace](https://join.slack.com/t/openeew/shared_invite/zt-cibhc0za-XKReMPobi2DsrPusORJZVQ).
-1. The **Listen for possible Earthquakes** section runs the seismic activity shake algorithm described above.  If a possible earthquake is detected, send a Twilio alert and mark the dropped pin red on the map.  You will need to configure the Twilio SMS node with your [Twilio account](https://www.twilio.com/) details. 
+1. The **Listen for possible Earthquakes** section runs the seismic activity shake algorithm described above.  If a possible earthquake is detected, send a Twilio alert and mark the dropped pin red on the map.  You will need to configure the Twilio SMS node with your [Twilio account](https://www.twilio.com/) details.
 
 ---
 <a name="example2"></a>
@@ -126,6 +126,11 @@ X / Y / Z graphs.
 </p>
 
 ![OpenEEW Sensor flow](images/openeew-sensorplot-flow.png?raw=true "OpenEEW flow")
+
+This flow has three sections:
+1. The **Enable / Disable Seismic Sensor Charts** section saves the state of the Switch node that determines if the sensor data should be plotted.
+1. The **Select an OpenEEW Sensor Network sensor to plot** section loads a table of OpenEEW sensors and allows the investigator to choose which sensor to plot.
+1. The **Plot selected real-time sensor data** section subscribes to a MQTT broker and filters data from the selected sensor. It then splits the live sensor data into X / Y / Z coordinates and plots 15 accelerometer readings per second to the Node-RED Dashboard chart nodes.  For performance reasons, depending on the sensitivity of the sensor, it discards the remaining accelerometer data.    
 
 ---
 <a name="example3"></a>

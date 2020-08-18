@@ -1,34 +1,126 @@
 [
     {
-        "id": "725fa634.92f558",
+        "id": "e856e9c1.0524c8",
         "type": "tab",
-        "label": "Graph",
+        "label": "Plot Seismic Activity",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "91858892.bf0ef8",
+        "id": "8048369b.45cb68",
+        "type": "group",
+        "z": "e856e9c1.0524c8",
+        "name": "Select an OpenEEW Sensor Network sensor to plot",
+        "style": {
+            "stroke": "#ff0000",
+            "fill": "#ffefbf",
+            "label": true,
+            "label-position": "n",
+            "color": "#000000"
+        },
+        "nodes": [
+            "ef212691.5d0228",
+            "bdf6268f.4e841",
+            "ca8974a0.11e69",
+            "acd6904b.2dae3",
+            "2ae89955.cc41e6",
+            "cfc16094.46cac",
+            "29d27bdb.5634bc",
+            "87c3ebdc.9b617",
+            "74a17c81.c71084",
+            "dda2f005.20608",
+            "d0968cb6.5cf5d8",
+            "b486ec08.7786d8"
+        ],
+        "x": 14,
+        "y": 159,
+        "w": 1352,
+        "h": 182
+    },
+    {
+        "id": "8601e458.9e3b18",
+        "type": "group",
+        "z": "e856e9c1.0524c8",
+        "name": "Plot selected real-time sensor data ",
+        "style": {
+            "label": true,
+            "stroke": "#ff0000",
+            "fill": "#ffefbf",
+            "label-position": "n",
+            "color": "#000000"
+        },
+        "nodes": [
+            "f302715f.39e6e",
+            "8c7a5e60.a4f4e",
+            "cc01942f.9ae418",
+            "6bc83f46.58cd",
+            "63ef1939.f883d8",
+            "5ae34de6.5db9b4",
+            "881d61e3.1e554",
+            "1b29c14f.61c39f",
+            "a75c9e6a.ef4758",
+            "51d560af.0a4f1",
+            "288ce970.5525e6",
+            "128ccc92.5b0fab",
+            "f2dc663f.1ba9b",
+            "a9690ee1.136aa",
+            "cb7e8e0b.94b308",
+            "9239cd5b.9b03b8",
+            "eda9cf37.ed9908",
+            "77ab4383.5d2104"
+        ],
+        "x": 14,
+        "y": 359,
+        "w": 1352,
+        "h": 242
+    },
+    {
+        "id": "a3047255.3433d",
+        "type": "group",
+        "z": "e856e9c1.0524c8",
+        "name": "Enable / Disable Seismic Sensor Charts",
+        "style": {
+            "stroke": "#ff0000",
+            "fill": "#ffefbf",
+            "label": true,
+            "label-position": "n",
+            "color": "#000000"
+        },
+        "nodes": [
+            "262e1b80.5442a4",
+            "cb7d5d5d.95be18",
+            "641c6b50.77a6bc"
+        ],
+        "x": 14,
+        "y": 59,
+        "w": 712,
+        "h": 82
+    },
+    {
+        "id": "f302715f.39e6e",
         "type": "mqtt in",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "",
         "topic": "grillo-openeew/traces/+",
         "qos": "0",
         "datatype": "json",
         "broker": "",
         "x": 140,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
-                "a515c1.91bca24"
+                "288ce970.5525e6"
             ]
         ]
     },
     {
-        "id": "1d5f5e1d.4adbca",
+        "id": "8c7a5e60.a4f4e",
         "type": "ui_chart",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "",
-        "group": "804c5d85.e7b288",
+        "group": "e920ac54.26bcf8",
         "order": 0,
         "width": "14",
         "height": "5",
@@ -61,15 +153,16 @@
         "useOldStyle": false,
         "outputs": 1,
         "x": 1290,
-        "y": 380,
+        "y": 440,
         "wires": [
             []
         ]
     },
     {
-        "id": "2f917c6a.18d3ec",
+        "id": "cc01942f.9ae418",
         "type": "debug",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -77,15 +170,16 @@
         "tostatus": false,
         "complete": "false",
         "x": 810,
-        "y": 500,
+        "y": 560,
         "wires": []
     },
     {
-        "id": "4f61a17d.1de54",
+        "id": "6bc83f46.58cd",
         "type": "ui_chart",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "",
-        "group": "804c5d85.e7b288",
+        "group": "e920ac54.26bcf8",
         "order": 0,
         "width": "14",
         "height": "5",
@@ -118,17 +212,18 @@
         "useOldStyle": false,
         "outputs": 1,
         "x": 1290,
-        "y": 420,
+        "y": 480,
         "wires": [
             []
         ]
     },
     {
-        "id": "65df1cda.b6c2ec",
+        "id": "63ef1939.f883d8",
         "type": "ui_chart",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "",
-        "group": "804c5d85.e7b288",
+        "group": "e920ac54.26bcf8",
         "order": 0,
         "width": "14",
         "height": "5",
@@ -161,15 +256,16 @@
         "useOldStyle": false,
         "outputs": 1,
         "x": 1290,
-        "y": 460,
+        "y": 520,
         "wires": [
             []
         ]
     },
     {
-        "id": "870363c4.0cdcd8",
+        "id": "5ae34de6.5db9b4",
         "type": "change",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "X",
         "rules": [
             {
@@ -186,17 +282,18 @@
         "to": "",
         "reg": false,
         "x": 790,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
-                "12b175aa.06b8e2"
+                "a75c9e6a.ef4758"
             ]
         ]
     },
     {
-        "id": "21eaa52b.a1083a",
+        "id": "881d61e3.1e554",
         "type": "change",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "Y",
         "rules": [
             {
@@ -213,17 +310,18 @@
         "to": "",
         "reg": false,
         "x": 790,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
-                "9c324419.a5be"
+                "128ccc92.5b0fab"
             ]
         ]
     },
     {
-        "id": "8daf99fb.960c6",
+        "id": "1b29c14f.61c39f",
         "type": "change",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "Z",
         "rules": [
             {
@@ -240,17 +338,18 @@
         "to": "",
         "reg": false,
         "x": 790,
-        "y": 460,
+        "y": 520,
         "wires": [
             [
-                "1ddbfc61.95199c"
+                "f2dc663f.1ba9b"
             ]
         ]
     },
     {
-        "id": "12b175aa.06b8e2",
+        "id": "a75c9e6a.ef4758",
         "type": "split",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "",
         "splt": "\\n",
         "spltType": "str",
@@ -259,17 +358,18 @@
         "stream": false,
         "addname": "",
         "x": 930,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
-                "92dfd05f.c821e"
+                "9239cd5b.9b03b8"
             ]
         ]
     },
     {
-        "id": "163183.0a371e7e",
+        "id": "51d560af.0a4f1",
         "type": "switch",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "Filter on Selected Sensor",
         "property": "payload.device_id",
         "propertyType": "msg",
@@ -284,21 +384,22 @@
         "repair": false,
         "outputs": 1,
         "x": 590,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
-                "870363c4.0cdcd8",
-                "21eaa52b.a1083a",
-                "8daf99fb.960c6",
-                "2f917c6a.18d3ec"
+                "5ae34de6.5db9b4",
+                "881d61e3.1e554",
+                "1b29c14f.61c39f",
+                "cc01942f.9ae418"
             ]
         ]
     },
     {
-        "id": "9385ea88.5846f8",
+        "id": "ef212691.5d0228",
         "type": "ui_table",
-        "z": "725fa634.92f558",
-        "group": "5ac8a278.da96bc",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
+        "group": "dedf708b.15aeb8",
         "name": "",
         "order": 3,
         "width": "10",
@@ -307,7 +408,7 @@
             {
                 "field": "device_id",
                 "title": "Devices",
-                "width": "",
+                "width": "20%",
                 "align": "left",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -317,7 +418,7 @@
             {
                 "field": "lat",
                 "title": "Latitude",
-                "width": "",
+                "width": "20%",
                 "align": "left",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -327,7 +428,7 @@
             {
                 "field": "lon",
                 "title": "Longitude",
-                "width": "",
+                "width": "20%",
                 "align": "left",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -335,9 +436,9 @@
                 }
             },
             {
-                "field": "location_display_name",
+                "field": "location",
                 "title": "Location",
-                "width": "",
+                "width": "40%",
                 "align": "left",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -347,38 +448,20 @@
         ],
         "outputs": 1,
         "cts": true,
-        "x": 630,
-        "y": 200,
+        "x": 610,
+        "y": 240,
         "wires": [
             [
-                "f45fc4f9.404a78",
-                "11c98444.aea90c"
+                "bdf6268f.4e841",
+                "74a17c81.c71084"
             ]
         ]
     },
     {
-        "id": "72a3a7a7.d16f28",
-        "type": "template",
-        "z": "725fa634.92f558",
-        "name": "Sensor Locations",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "device_id,lat,lon,location_display_name\nmx000,18.46,-97.4,Tehuacan\nmx001,15.67025,-96.4951,Costa central de Oaxaca\nmx002,15.8634,-97.0692,Puerto Escondido\nmx004,16.35073,-98.05096,Pinotepa Nacional\nmx005,16.43514,-95.02098,Juchitán\nmx006,16.68485,-98.40432,Límite Guerrero Oaxaca\nmx007,16.32395,-95.24342,Tehuantepec\nmx008,16.60877,-98.97822,Costa Chica Guerrero\nmx009,16.71743,-99.12173,Costa Chica Guerrero\nmx010,16.79264,-99.38999,Costa Chica Guerrero\nmx011,16.83632,-99.90182,Acapulco\nmx012,16.35993,-94.18839,Límite Oaxaca Chiapas\nmx013,16.35993,-94.18839,Límite Oaxaca Chiapas\nmx014,16.87247,-99.88662,Acapulco\nmx015,17.00836,-100.0895,Costa Grande Guerrero\nmx016,16.00631,-97.44738,Costa central de Oaxaca\nmx017,17.23433,-100.6307,Costa Grande Guerrero\nmx018,17.25936,-100.87556,Costa Grande Guerrero\nmx019,17.2725,-101.04604,Costa Grande Guerrero\nmx020,17.53705,-101.27655,Costa Grande Guerrero\nmx021,17.64069,-101.47923,Zihuatanaejo\nmx022,17.63601,-101.57063,Zihuatanaejo\nmx023,17.6516,-101.55154,Zihuatanaejo\nmx024,17.98208,-101.80662,Costa Grande Guerrero límite con Michoacán\nmx026,18.716,-98.778,Jantetelco\nmx027,19.048038,-98.271408,Cholula\nmx029,18.957042,-99.235981,Cuernavaca\nmx999,16.00631,-97.44738,Costa central de Oaxaca",
-        "output": "str",
-        "x": 310,
-        "y": 200,
-        "wires": [
-            [
-                "840f3dbf.dedbe"
-            ]
-        ]
-    },
-    {
-        "id": "f45fc4f9.404a78",
+        "id": "bdf6268f.4e841",
         "type": "debug",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -386,13 +469,14 @@
         "tostatus": false,
         "complete": "false",
         "x": 910,
-        "y": 160,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "840f3dbf.dedbe",
+        "id": "ca8974a0.11e69",
         "type": "csv",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
         "name": "",
         "sep": ",",
         "hdrin": true,
@@ -402,22 +486,23 @@
         "temp": "",
         "skip": "0",
         "strings": true,
-        "x": 490,
-        "y": 200,
+        "x": 470,
+        "y": 240,
         "wires": [
             [
-                "9385ea88.5846f8"
+                "ef212691.5d0228"
             ]
         ]
     },
     {
-        "id": "adbd800c.424658",
+        "id": "262e1b80.5442a4",
         "type": "ui_switch",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "a3047255.3433d",
         "name": "",
         "label": "Enable Seismic Activity charting",
         "tooltip": "",
-        "group": "5ac8a278.da96bc",
+        "group": "dedf708b.15aeb8",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -433,18 +518,19 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 190,
+        "x": 170,
         "y": 100,
         "wires": [
             [
-                "92e12ff8.192088"
+                "cb7d5d5d.95be18"
             ]
         ]
     },
     {
-        "id": "92e12ff8.192088",
+        "id": "cb7d5d5d.95be18",
         "type": "change",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "a3047255.3433d",
         "name": "Graph Activity",
         "rules": [
             {
@@ -460,33 +546,35 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 460,
+        "x": 420,
         "y": 100,
         "wires": [
             [
-                "c6a3d4f6.4f1bb8"
+                "641c6b50.77a6bc"
             ]
         ]
     },
     {
-        "id": "c6a3d4f6.4f1bb8",
+        "id": "641c6b50.77a6bc",
         "type": "debug",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "a3047255.3433d",
         "name": "",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 670,
+        "x": 610,
         "y": 100,
         "wires": []
     },
     {
-        "id": "a515c1.91bca24",
+        "id": "288ce970.5525e6",
         "type": "switch",
-        "z": "725fa634.92f558",
-        "name": "Graph Activity",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
+        "name": "Plot Sensor Activity",
         "property": "graphactivity",
         "propertyType": "flow",
         "rules": [
@@ -497,48 +585,41 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 360,
-        "y": 420,
+        "x": 370,
+        "y": 480,
         "wires": [
             [
-                "163183.0a371e7e"
+                "51d560af.0a4f1"
             ]
         ]
     },
     {
-        "id": "ec010edb.4b0508",
+        "id": "acd6904b.2dae3",
         "type": "comment",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
         "name": "Load List of Sensors",
         "info": "",
         "x": 130,
-        "y": 160,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "b64ce168.a44f7",
+        "id": "2ae89955.cc41e6",
         "type": "comment",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
         "name": "Select a sensor to plot",
         "info": "",
         "x": 600,
-        "y": 160,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "1a5bb005.b463f8",
-        "type": "comment",
-        "z": "725fa634.92f558",
-        "name": "Enable / Disable Seismic Charts",
-        "info": "",
-        "x": 170,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "af403d16.883ab8",
+        "id": "cfc16094.46cac",
         "type": "change",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
         "name": "",
         "rules": [
             {
@@ -555,18 +636,19 @@
         "to": "",
         "reg": false,
         "x": 950,
-        "y": 200,
+        "y": 240,
         "wires": [
             [
-                "646250dc.af84c8",
-                "9a0fb959.0511b"
+                "29d27bdb.5634bc",
+                "87c3ebdc.9b617"
             ]
         ]
     },
     {
-        "id": "646250dc.af84c8",
+        "id": "29d27bdb.5634bc",
         "type": "debug",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -574,14 +656,15 @@
         "tostatus": false,
         "complete": "payload.device_id",
         "targetType": "msg",
-        "x": 1200,
-        "y": 160,
+        "x": 1220,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "9c324419.a5be",
+        "id": "128ccc92.5b0fab",
         "type": "split",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "",
         "splt": "\\n",
         "spltType": "str",
@@ -590,17 +673,18 @@
         "stream": false,
         "addname": "",
         "x": 930,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
-                "b9530008.10733"
+                "cb7e8e0b.94b308"
             ]
         ]
     },
     {
-        "id": "1ddbfc61.95199c",
+        "id": "f2dc663f.1ba9b",
         "type": "split",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "",
         "splt": "\\n",
         "spltType": "str",
@@ -609,18 +693,19 @@
         "stream": false,
         "addname": "",
         "x": 930,
-        "y": 460,
+        "y": 520,
         "wires": [
             [
-                "d3e7733b.c7bb9"
+                "a9690ee1.136aa"
             ]
         ]
     },
     {
-        "id": "9a0fb959.0511b",
+        "id": "87c3ebdc.9b617",
         "type": "ui_text",
-        "z": "725fa634.92f558",
-        "group": "5ac8a278.da96bc",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
+        "group": "dedf708b.15aeb8",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -628,14 +713,15 @@
         "label": "Selected sensor :",
         "format": "{{msg.payload.device_id}}",
         "layout": "row-spread",
-        "x": 1190,
-        "y": 200,
+        "x": 1210,
+        "y": 240,
         "wires": []
     },
     {
-        "id": "11c98444.aea90c",
+        "id": "74a17c81.c71084",
         "type": "switch",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
         "name": "Did Selected Sensor Change",
         "property": "payload.device_id",
         "propertyType": "msg",
@@ -650,18 +736,19 @@
         "repair": false,
         "outputs": 1,
         "x": 640,
-        "y": 280,
+        "y": 300,
         "wires": [
             [
-                "27f854fe.3e8e24",
-                "af403d16.883ab8"
+                "dda2f005.20608",
+                "cfc16094.46cac"
             ]
         ]
     },
     {
-        "id": "27f854fe.3e8e24",
+        "id": "dda2f005.20608",
         "type": "change",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
         "name": "Zero Graphs",
         "rules": [
             {
@@ -678,24 +765,25 @@
         "to": "",
         "reg": false,
         "x": 1090,
-        "y": 280,
+        "y": 300,
         "wires": [
             [
-                "1d5f5e1d.4adbca",
-                "4f61a17d.1de54",
-                "65df1cda.b6c2ec"
+                "8c7a5e60.a4f4e",
+                "6bc83f46.58cd",
+                "63ef1939.f883d8"
             ]
         ]
     },
     {
-        "id": "d3e7733b.c7bb9",
+        "id": "a9690ee1.136aa",
         "type": "delay",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "",
         "pauseType": "rate",
         "timeout": "50",
         "timeoutUnits": "milliseconds",
-        "rate": "10",
+        "rate": "15",
         "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
@@ -703,22 +791,23 @@
         "randomUnits": "milliseconds",
         "drop": true,
         "x": 1100,
-        "y": 460,
+        "y": 520,
         "wires": [
             [
-                "65df1cda.b6c2ec"
+                "63ef1939.f883d8"
             ]
         ]
     },
     {
-        "id": "b9530008.10733",
+        "id": "cb7e8e0b.94b308",
         "type": "delay",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "",
         "pauseType": "rate",
         "timeout": "50",
         "timeoutUnits": "milliseconds",
-        "rate": "10",
+        "rate": "15",
         "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
@@ -726,22 +815,23 @@
         "randomUnits": "milliseconds",
         "drop": true,
         "x": 1100,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
-                "4f61a17d.1de54"
+                "6bc83f46.58cd"
             ]
         ]
     },
     {
-        "id": "92dfd05f.c821e",
+        "id": "9239cd5b.9b03b8",
         "type": "delay",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "",
         "pauseType": "rate",
         "timeout": "50",
         "timeoutUnits": "milliseconds",
-        "rate": "10",
+        "rate": "15",
         "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
@@ -749,81 +839,104 @@
         "randomUnits": "milliseconds",
         "drop": true,
         "x": 1100,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
-                "1d5f5e1d.4adbca"
+                "8c7a5e60.a4f4e"
             ]
         ]
     },
     {
-        "id": "3c6e5eb5.d923fa",
+        "id": "d0968cb6.5cf5d8",
         "type": "inject",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
         "name": "",
-        "topic": "",
-        "payload": "true",
-        "payloadType": "bool",
         "repeat": "",
         "crontab": "",
         "once": true,
         "onceDelay": "0.4",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
         "x": 110,
-        "y": 200,
+        "y": 240,
         "wires": [
             [
-                "72a3a7a7.d16f28"
+                "b486ec08.7786d8"
             ]
         ]
     },
     {
-        "id": "759a6e53.fc9af8",
+        "id": "eda9cf37.ed9908",
         "type": "comment",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "MQTT feed of all sensors",
         "info": "",
         "x": 150,
-        "y": 380,
+        "y": 440,
         "wires": []
     },
     {
-        "id": "1ea0e0cc.42dc3f",
+        "id": "77ab4383.5d2104",
         "type": "comment",
-        "z": "725fa634.92f558",
+        "z": "e856e9c1.0524c8",
+        "g": "8601e458.9e3b18",
         "name": "Split / rate limit subsecond accelerometer data",
         "info": "",
-        "x": 930,
-        "y": 340,
+        "x": 910,
+        "y": 400,
         "wires": []
     },
     {
-        "id": "804c5d85.e7b288",
+        "id": "b486ec08.7786d8",
+        "type": "template",
+        "z": "e856e9c1.0524c8",
+        "g": "8048369b.45cb68",
+        "name": "Sensor Locations",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "device_id,lat,lon,location\nmx001,15.67,-96.5,Costa central de Oaxaca\nmx002,15.86,-97.07,Puerto Escondido Oaxaca\nmx004,16.35,-98.05,Pinotepa Nacional Oaxaca\nmx005,16.44,-95.02,Juchitan Oaxaca\nmx006,16.68,-98.4,Limite Guerrero Oaxaca\nmx007,16.32,-95.24,Tehuantepec Oaxaca\nmx008,16.61,-98.98,Costa Chica Guerrero\nmx009,16.72,-99.12,Costa Chica Guerrero\nmx010,16.79,-99.39,Costa Chica Guerrero\nmx011,16.84,-99.9,Acapulco Guerrero\nmx012,16.36,-94.19,Limite Oaxaca Chiapas\nmx013,16.36,-94.19,Limite Oaxaca Chiapas\nmx014,16.87,-99.89,Acapulco Guerrero\nmx015,17.01,-100.09,Costa Grande Guerrero\nmx016,16.01,-97.45,Costa central de Oaxaca\nmx017,17.23,-100.63,Costa Grande Guerrero\nmx018,17.26,-100.88,Costa Grande Guerrero\nmx019,17.27,-101.05,Costa Grande Guerrero\nmx020,17.54,-101.28,Costa Grande Guerrero\nmx021,17.64,-101.48,Zihuatanaejo Guerrero\nmx022,17.64,-101.57,Zihuatanaejo Guerrero\nmx023,17.65,-101.55,Zihuatanaejo Guerrero\nmx024,17.98,-101.81,Costa Grande Guerrero limite con Michoacan\nmx026,18.72,-98.78,Jantetelco\nmx027,19.05,-98.27,Cholula\nmx029,18.96,-99.24,Cuernavaca\nmx999,16.01,-97.45,Costa central de Oaxaca\n3ef3d787af85,17.962568,-66.579812,Ponce Puerto Rico\ndb0f06aa9270,18.3953495,-66.1547988,Bayamón Puerto Rico",
+        "output": "str",
+        "x": 290,
+        "y": 240,
+        "wires": [
+            [
+                "ca8974a0.11e69"
+            ]
+        ]
+    },
+    {
+        "id": "e920ac54.26bcf8",
         "type": "ui_group",
         "z": "",
         "name": "Graph",
-        "tab": "c21b2792.352e3",
+        "tab": "8babad6f.576578",
         "order": 2,
         "disp": true,
         "width": "14",
         "collapse": false
     },
     {
-        "id": "5ac8a278.da96bc",
+        "id": "dedf708b.15aeb8",
         "type": "ui_group",
         "z": "",
         "name": "Sensors",
-        "tab": "c21b2792.352e3",
+        "tab": "8babad6f.576578",
         "order": 1,
         "disp": true,
         "width": "10",
         "collapse": false
     },
     {
-        "id": "c21b2792.352e3",
+        "id": "8babad6f.576578",
         "type": "ui_tab",
         "z": "",
-        "name": "OpenEEW Graph",
-        "icon": "linechart",
+        "name": "OpenEEW Seismic Activity",
+        "icon": "fa-line-chart",
         "order": 1,
         "disabled": false,
         "hidden": false
