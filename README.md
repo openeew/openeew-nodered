@@ -21,7 +21,7 @@ Join the Call for Code challenge and contribute to open source projects.
 
 1. [Install Node-RED](https://nodered.org/docs/getting-started/) on your system or in the cloud
   - Alternatively, this flow can be deployed to [IBM Cloud](https://developer.ibm.com/dwwi/jsp/register.jsp?eventid=cfc-2020-projects) by creating a [Node-RED Starter Application](https://developer.ibm.com/components/node-red/tutorials/how-to-create-a-node-red-starter-application/)
-1. [Add the following nodes](https://nodered.org/docs/user-guide/runtime/adding-nodes) to your Node-RED palette
+2. [Add the following nodes](https://nodered.org/docs/user-guide/runtime/adding-nodes) to your Node-RED palette
   - [node-red-dashboard](https://flows.nodered.org/node/node-red-dashboard)
   - [node-red-contrib-web-worldmap](https://flows.nodered.org/node/node-red-contrib-web-worldmap)
   - [node-red-node-twilio](https://flows.nodered.org/node/node-red-node-twilio)
