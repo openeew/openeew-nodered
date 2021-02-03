@@ -206,10 +206,11 @@ Brush up on your cloud skills while making a real difference and get involved wi
 [here](https://github.com/johnwalicki/Node-RED-Earthquake-Dashboard)
 
 
-### Authors
+### Contributors
 
-- [John Walicki](https://github.com/johnwalicki)
-- [Grillo](https://grillo.io)
+<a href="https://github.com/openeew/openeew-nodered/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=openeew/openeew-nodered" />
+</a>
 ___
 
 Enjoy!  Give us [feedback](https://github.com/openeew/openeew-nodered/issues) if you have suggestions on how to improve this tutorial.
