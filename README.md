@@ -7,7 +7,7 @@ historical seismic datasets in Node-RED Dashboards.
 These example flows and Node-RED Dashboards might be useful as part of an Earthquake Early Warning system.
 Join the Call for Code challenge and contribute to open source projects.
 
-![OpenEEW Earthquake animation](images/mx72mag.gif?raw=true "OpenEEW graph animation")
+[![OpenEEW Earthquake animation](images/mx72mag.gif?raw=true "OpenEEW graph animation")](images/mx72mag.gif?raw=true "OpenEEW graph animation")
 
 ### Examples in this Repository
 
